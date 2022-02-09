@@ -16,7 +16,7 @@ body {
 .container {
     width: 800px;
     max-width: 80%;
-    border-radiux: 15px;
+    border-radius: 15px;
     padding: 10px;
     box-shadow: 0 0 10px 2px;
 }
