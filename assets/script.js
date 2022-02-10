@@ -7,8 +7,11 @@ const questionContainerDescriptionElement = document.getElementById('question-co
 const questionElement = document.getElementById('question');
 const answerButtonsElement = document.getElementById('answer-buttons');
 const formElement = document.getElementById('form');
+const submitElement = document.getElementById('submit-btn')
 
 let shuffledQuestions, currentQuestionIndex
+
+let selectedAnswers = [];
 
 startButton.addEventListener('click', startGame);
 nextButton.addEventListener('click', () => {
@@ -30,15 +33,13 @@ function startGame () {
 
 function setNextQuestion () {
     // STEP 2 // 
+    // STEP 5 // 
     showQuestion(questions[currentQuestionIndex]);
     // resetState()
     }
 
-    
-
 function showQuestion(question) {
     // STEP 3a //
-
     questionElement.innerText = question.question;
     question.answers.forEach(answer => {
         const button = document.createElement('button');
@@ -50,44 +51,37 @@ function showQuestion(question) {
         button.addEventListener('click', selectAnswer);
         answerButtonsElement.appendChild(button);
     })
-
 }
 
-// function resetState() {
-//     // STEP 3b //
-//     nextButton.classList.add('hide');
-//     while (answerButtonsElement.firstChild) {
-//         answerButtonsElement.removeChild
-//         (answerButtonsElement.firstChild)
-//     }
-// }
+function resetState() {
+    // STEP 3b/5b //
+    clearStatusClass(document.body);
+    nextButton.classList.add('hide');
+    while (answerButtonsElement.firstChild) {
+        answerButtonsElement.removeChild
+        (answerButtonsElement.firstChild)
+    }
+}
 
 function selectAnswer (e) {
+    // STEP 4 //
     console.log(e);
     const selectedButton = e.target;
     const correct = selectedButton.dataset.text;
-    setStatusClass(document.body, correct);
-    Array.from(answerButtonsElement.children)
-        .forEach(button => {
-            setStatusClass(button, button.dataset.correct);
-        })
-        if (shuffledQuestions.length > currentQuestionIndex + 1) {
-            nextButton.classList.remove('hide');
-        } else {
-            formElement.classList.remove('hide');
-        }
-
-}
-
-function setStatusClass(element, correct) {
-    clearStatusClass(element);
-    if (correct) {
-        element.classList.add('correct');
+    
+    if (questions.length > currentQuestionIndex + 1) {
+        nextButton.classList.remove('hide');
+    } else {
+        nextButton.classList.add('hide');
+        submitElement.classList.remove('hide');
+        questionContainerElement.classList.add('hide');
+        formElement.classList.remove('hide');
     }
 }
 
 function clearStatusClass(element) {
     element.classList.remove('correct');
+    element.classList.remove('wrong');
 }
 
 
