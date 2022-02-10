@@ -1,5 +1,9 @@
 const startButton = document.getElementById('start-btn');
+const nextButton = document.getElementById('next-btn');
+const backButton = document.getElementById('back-btn');
 const questionContainerElement = document.getElementById('question-container');
+const questionContainerTitleElement = document.getElementById('question-container-title');
+const questionContainerDescriptionElement = document.getElementById('question-container-description');
 const questionElement = document.getElementById('question');
 const answerButtonsElement = document.getElementById('answer-buttons');
 
@@ -8,39 +12,164 @@ let shuffledQuestions, currentQuestionIndex
 startButton.addEventListener('click', startGame);
 
 function startGame () {
+    // step 1 //
     console.log('start game');
     startButton.classList.add('hide');
-    shuffledQuestions = questions.sort(() => Math.random() - .5);
+    // shuffledQuestions = questions.sort(() => Math.random() - .5);
     currentQuestionIndex = 0;
+    questionContainerTitleElement.classList.add('hide');
     questionContainerElement.classList.remove('hide');
+    questionContainerDescriptionElement.classList.add('hide');
     setNextQuestion();
 }
 
 function setNextQuestion () {
-    showQuestion(shuffledQuestions[currentQuestionIndex]);
-
+    // STEP 2 // 
+    showQuestion(questions[currentQuestionIndex]);
+    // resetState()
     }
 
+    
+
 function showQuestion(question) {
+    // STEP 3a //
+
     questionElement.innerText = question.question;
-    console.log(question);
+    question.answers.forEach(answer => {
+        const button = document.createElement('button');
+        button.innerText = answer.text;
+        button.classList.add('btn');
+        if (answer.correct) {
+            button.dataset.correct = answer.correct;
+        }
+        button.addEventListener('click', selectAnswer);
+        answerButtonsElement.appendChild(button);
+    })
+
 }
 
-function selectAnswer () {
+// function resetState() {
+//     // STEP 3b //
+//     nextButton.classList.add('hide');
+//     while (answerButtonsElement.firstChild) {
+//         answerButtonsElement.removeChild
+//         (answerButtonsElement.firstChild)
+//     }
+// }
+
+function selectAnswer (e) {
+    console.log(e);
+    const selectedButton = e.target;
+    const correct = selectedButton.dataset.text;
+    setStatusClass(document.body, correct);
+    Array.from(answerButtonsElement.children)
+        .forEach(button => {
+            setStatusClass(button, button.dataset.correct);
+        })
+    nextButton.classList.remove('hide');
 
 }
+
+function setStatusClass(element, correct) {
+    clearStatusClass(element);
+    if (correct) {
+        element.classList.add('correct');
+    }
+}
+
+function clearStatusClass(element) {
+    element.classList.remove('correct');
+}
+
 
 const questions = [
     {
-        question: 'What is 2+2?',
+        question: 'When Does Your Current Lease End?',
         answers: [
             {
-                text: '4',
-                correct: true 
+                text: 'My Lease Has Already Ended',
+                correct: true,
+                value: 10
             },
             {
-                text: '22',
-                correct: false
+                text: 'This Month',
+                correct: true,
+                value: 5
+            },
+            {
+                text: 'Next Month',
+                correct: true,
+                value: 4
+            },
+            {
+                text: '3-6 Months',
+                correct: true,
+                value: 3
+            },
+            {
+                text: 'More Than 6-months',
+                correct: true,
+                value: 1
+            }
+        ]
+    },
+    {
+        question: 'What Would You Estimate Your Credit Score To Be?',
+        answers: [
+            {
+                text: 'Greater Than 720',
+                correct: true,
+                value: 10 
+            },
+            {
+                text: 'Between 650-720',
+                correct: true,
+                value: 5
+            },
+            {
+                text: 'Somewhere between 550-650',
+                correct: true,
+                value: 3
+            },
+            {
+                text: 'Needs some work :/',
+                correct: true,
+                value: 2
+            },
+            {
+                text: 'I have no idea',
+                correct: true,
+                value: 0
+            }
+        ]
+    },
+    {
+        question: 'How Much Would You Be Willing To Put Down As A Down Payment Towards A New Home?',
+        answers: [
+            {
+                text: '0%',
+                correct: true,
+                value: 1
+            },
+            {
+                text: '3%',
+                correct: true,
+                value: 3
+            },
+            {
+                text: '5%',
+                correct: true,
+                value: 5
+            },
+            {
+                text: '10%',
+                correct: true,
+                value: 10
+            },
+            {
+                text: '20%',
+                correct: true,
+                value: 20
             }
         ]
     }
