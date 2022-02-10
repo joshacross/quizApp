@@ -9,7 +9,7 @@ const answerButtonsElement = document.getElementById('answer-buttons');
 const formElement = document.getElementById('form');
 const submitElement = document.getElementById('submit-btn')
 
-let shuffledQuestions, currentQuestionIndex
+let x, currentQuestionIndex
 
 let selectedAnswers = [];
 
@@ -23,7 +23,7 @@ function startGame () {
     // step 1 //
     console.log('start game');
     startButton.classList.add('hide');
-    // shuffledQuestions = questions.sort(() => Math.random() - .5);
+    x = questions
     currentQuestionIndex = 0;
     questionContainerTitleElement.classList.add('hide');
     questionContainerElement.classList.remove('hide');
