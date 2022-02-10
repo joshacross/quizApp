@@ -6,10 +6,15 @@ const questionContainerTitleElement = document.getElementById('question-containe
 const questionContainerDescriptionElement = document.getElementById('question-container-description');
 const questionElement = document.getElementById('question');
 const answerButtonsElement = document.getElementById('answer-buttons');
+const formElement = document.getElementById('form');
 
 let shuffledQuestions, currentQuestionIndex
 
 startButton.addEventListener('click', startGame);
+nextButton.addEventListener('click', () => {
+    currentQuestionIndex++;
+    setNextQuestion();
+})
 
 function startGame () {
     // step 1 //
@@ -66,7 +71,11 @@ function selectAnswer (e) {
         .forEach(button => {
             setStatusClass(button, button.dataset.correct);
         })
-    nextButton.classList.remove('hide');
+        if (shuffledQuestions.length > currentQuestionIndex + 1) {
+            nextButton.classList.remove('hide');
+        } else {
+            formElement.classList.remove('hide');
+        }
 
 }
 
