@@ -18,6 +18,7 @@ nextButton.addEventListener('click', () => {
     currentQuestionIndex++;
     setNextQuestion();
 })
+submitElement.addEventListener('click', submitData);
 
 function startGame () {
     // step 1 //
@@ -87,6 +88,15 @@ function selectAnswer (e) {
         questionContainerElement.classList.add('hide');
         formElement.classList.remove('hide');
     }
+}
+
+function submitData() {
+    selectedAnswers.push(formElement.dataset);
+
+    for(let i = 0; i < selectedAnswers.length; i++) {
+        console.log(selectedAnswers[i]);
+    }
+    
 }
 
 
