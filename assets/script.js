@@ -34,8 +34,8 @@ function startGame () {
 function setNextQuestion () {
     // STEP 2 // 
     // STEP 5 // 
-    showQuestion(questions[currentQuestionIndex]);
-    // resetState()
+    resetState();
+    showQuestion(x[currentQuestionIndex]);
     }
 
 function showQuestion(question) {
@@ -58,8 +58,7 @@ function resetState() {
     clearStatusClass(document.body);
     nextButton.classList.add('hide');
     while (answerButtonsElement.firstChild) {
-        answerButtonsElement.removeChild
-        (answerButtonsElement.firstChild)
+        answerButtonsElement.removeChild(answerButtonsElement.firstChild)
     }
 }
 
@@ -67,9 +66,21 @@ function selectAnswer (e) {
     // STEP 4 //
     console.log(e);
     const selectedButton = e.target;
-    const correct = selectedButton.dataset.text;
+    const selectedText = selectedButton.dataset.text;
     
-    if (questions.length > currentQuestionIndex + 1) {
+    selectedAnswers.push(selectedText);
+
+    // console.log(selectedAnswers[selectedText]);
+
+    for (let i = 0; i < selectedAnswers.length; i++) {
+        console.log(selectedAnswers[i]);
+    }
+
+
+
+    console.log(selectedAnswers);
+    
+    if (x.length > currentQuestionIndex + 1) {
         nextButton.classList.remove('hide');
     } else {
         nextButton.classList.add('hide');
@@ -78,6 +89,7 @@ function selectAnswer (e) {
         formElement.classList.remove('hide');
     }
 }
+
 
 function clearStatusClass(element) {
     element.classList.remove('correct');
