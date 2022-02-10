@@ -91,12 +91,8 @@ function selectAnswer (e) {
 }
 
 function submitData() {
-    selectedAnswers.push(formElement.dataset);
 
-    for(let i = 0; i < selectedAnswers.length; i++) {
-        console.log(selectedAnswers[i]);
-    }
-    
+    preventDefault();
 }
 
 
