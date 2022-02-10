@@ -45,8 +45,8 @@ function showQuestion(question) {
         const button = document.createElement('button');
         button.innerText = answer.text;
         button.classList.add('btn');
-        if (answer.correct) {
-            button.dataset.correct = answer.correct;
+        if (answer.text) {
+            button.dataset.text = answer.text;
         }
         button.addEventListener('click', selectAnswer);
         answerButtonsElement.appendChild(button);
@@ -55,7 +55,6 @@ function showQuestion(question) {
 
 function resetState() {
     // STEP 3b/5b //
-    clearStatusClass(document.body);
     nextButton.classList.add('hide');
     while (answerButtonsElement.firstChild) {
         answerButtonsElement.removeChild(answerButtonsElement.firstChild)
@@ -88,12 +87,6 @@ function selectAnswer (e) {
         questionContainerElement.classList.add('hide');
         formElement.classList.remove('hide');
     }
-}
-
-
-function clearStatusClass(element) {
-    element.classList.remove('correct');
-    element.classList.remove('wrong');
 }
 
 
