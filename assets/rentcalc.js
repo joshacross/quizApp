@@ -46,5 +46,5 @@ function getPV() {
         let presentValue = Math.floor(pvResult);
 
 
-    alert(presentValue);
+    alert('Paying ' + rentPayment + ' ' + 'could afford you a house up to ' + presentValue);
 }
