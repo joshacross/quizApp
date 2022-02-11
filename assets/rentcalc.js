@@ -46,5 +46,5 @@ function getPV() {
         let presentValue = Math.floor(pvResult);
 
 
-    alert('CONGRATULATIONS!!! 🎉 🎉 🎉  Paying $' + rentPayment + ' in rent' + 'could allow you to buy a house up to $' + presentValue);
+    alert('CONGRATULATIONS!!! 🎉 🎉 🎉  Paying $' + rentPayment + ' in rent could allow you to purchase a house up to $' + presentValue);
 }
