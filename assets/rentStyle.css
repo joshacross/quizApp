@@ -6,6 +6,7 @@
 body {
     padding: 0;
     margin: 0;
+    background-color: #161e2f;
     display: flex;
     width: 100vw;
     height: 100vh;
@@ -16,6 +17,7 @@ body {
 
 .container {
     width: 800px;
+    background-color: #209d5c;
     max-width: 80%;
     border-radius: 15px;
     padding: 10px;
@@ -24,10 +26,22 @@ body {
 }
 
 .submit-btn {
-    padding: 10px 20px
+    padding: 10px 20px;
+    color: white;
+    background-color: #161e2f;
+    border-color: #161e2f;
+    border-radius: 5px;
 }
 
 input {
-    padding: 20px;
-    font-size: large;
+    margin: 30px 0 0 0;
+    padding: 10px;
+    font-size: x-large;
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255);
+}
+
+p {
+    font-weight: bolder;
+    font-size: x-large;
 }
