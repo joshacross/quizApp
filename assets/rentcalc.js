@@ -1,21 +1,3 @@
-// const submitForm = document.getElementById('form');
-
-
-// let rent = document.getElementById('rent').value;
-// let pv = [];
-// let rentPayment;
-
-// submitForm.addEventListener('submit', getPV);
-
-// function getPV (e) {
-//     e.preventDefault();
-//     console.log(rent);
-//     rentPayment = e.target.value;
-//     console.log(rentPayment);
-
-
-// }
-
 const multiply = (num1, num2) => {
     return num1*num2;
 }
