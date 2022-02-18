@@ -15,6 +15,7 @@ nextButton.addEventListener('click', () => {
 });
 
 backButton.addEventListener('click', () => {
+    resetState();
     showQuestion(x[currentQuestionIndex - 1])
 })
 
@@ -23,9 +24,6 @@ async function startGame () {
     x = questions;
     currentQuestionIndex = 0;
     setNextQuestion();
-    // await questions;
-    // currentQuestionIndex = 0;
-    // setNextQuestion();
 }
 
 function setNextQuestion () {
@@ -71,8 +69,6 @@ function selectAnswer (e) {
     for (let i = 0; i < selectedAnswers.length; i++) {
         console.log(selectedAnswers[i]);
     }
-
-
 
     console.log(selectedAnswers);
     

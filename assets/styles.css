@@ -53,8 +53,6 @@ background: linear-gradient(183deg, rgba(32,157,92,1) 0%, rgba(50,172,109,1) 40%
 }
 
 .btn:focus {
-    background-color:#fff;
-    color: #161e2f;
     border: 3px solid #209d5c;
     font-size: medium;
 }
@@ -73,7 +71,7 @@ background: linear-gradient(183deg, rgba(32,157,92,1) 0%, rgba(50,172,109,1) 40%
 }
 
 .arrow {
-    width: 10%;
+    width: 15%;
 }
 
 .controls {
