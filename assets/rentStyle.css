@@ -28,19 +28,30 @@ body {
 }
 
 .container {
-    width: 800px;
+    width: 80%;
     background-color: #209d5c;
     max-width: 80%;
     border-radius: 15px;
-    padding: 10px;
+    padding: 20px;
     box-shadow: 0 0 10px 2px;
-    text-align: center;
 }
 
 img {
     width: 100px;
 }
 .submit-btn {
+    margin: 5% 0 0 0;
+    float: right;
+    padding: 10px 20px;
+    color: white;
+    background-color:#209d5c;
+    border-color: #161e2f;
+    border-radius: 5px;
+}
+
+.submit-btn:hover {
+    margin: 5% 0 0 0;
+    float: right;
     padding: 10px 20px;
     color: white;
     background-color: #161e2f;
@@ -48,16 +59,52 @@ img {
     border-radius: 5px;
 }
 
+.submit-btn:active {
+    margin: 5% 0 0 0;
+    float: right;
+    padding: 10px 20px;
+    color: white;
+    background-color: #161e2f;
+    border-color: #209d5c;
+    border-radius: 5px;
+}
+
+
 input {
     transition:cubic-bezier(0.55, 0.055, 0.675, 0.19);
-    margin: 30px 0 0 0;
+    margin: 5px 20px 0 20px;
     padding: 10px;
     font-size: x-large;
     border-radius: 5px;
     background-color: rgb(255, 255, 255);
 }
 
+label {
+    margin: 5px 20px 0 20px;
+}
+
 p {
     font-weight: bolder;
     font-size: x-large;
+}
+
+.form-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vertical-flex {
+    display: flex;
+    flex-direction: column;
+}
+
+.horizontal-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    align-content: center;
+
 }
