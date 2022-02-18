@@ -1,37 +1,31 @@
-const startButton = document.getElementById('start-btn');
 const nextButton = document.getElementById('next-btn');
 const backButton = document.getElementById('back-btn');
 const questionContainerElement = document.getElementById('question-container');
-const questionContainerTitleElement = document.getElementById('question-container-title');
-const questionContainerDescriptionElement = document.getElementById('question-container-description');
 const questionElement = document.getElementById('question');
 const answerButtonsElement = document.getElementById('answer-buttons');
-const formElement = document.getElementById('form');
-const submitElement = document.getElementById('submit-btn')
 const lineElement = document.getElementById('line');
 
-let x, currentQuestionIndex
+let x, currentQuestionIndex;
 
 let selectedAnswers = [];
 
-startButton.addEventListener('click', startGame);
 nextButton.addEventListener('click', () => {
     currentQuestionIndex++;
     setNextQuestion();
 });
 
-submitElement.addEventListener('click', submitData);
+backButton.addEventListener('click', () => {
+    showQuestion(x[currentQuestionIndex - 1])
+})
 
-function startGame () {
-    // step 1 //
+async function startGame () {
     console.log('start game');
-    startButton.classList.add('hide');
-    x = questions
+    x = questions;
     currentQuestionIndex = 0;
-    questionContainerTitleElement.classList.add('hide');
-    questionContainerElement.classList.remove('hide');
-    questionContainerDescriptionElement.classList.add('hide');
     setNextQuestion();
+    // await questions;
+    // currentQuestionIndex = 0;
+    // setNextQuestion();
 }
 
 function setNextQuestion () {
@@ -42,10 +36,8 @@ function setNextQuestion () {
     }
 
 function showQuestion(question) {
+    console.log(question);
     // STEP 3a //
-    backButton.classList.remove('hide');
-    nextButton.classList.remove('hide');
-    lineElement.classList.remove('hide');
     questionElement.innerText = question.question;
     question.answers.forEach(answer => {
         const button = document.createElement('button');
@@ -87,94 +79,57 @@ function selectAnswer (e) {
     if (x.length > currentQuestionIndex + 1) {
         nextButton.classList.remove('hide');
     } else {
-        nextButton.classList.add('hide');
-        submitElement.classList.remove('hide');
-        questionContainerElement.classList.add('hide');
-        formElement.classList.remove('hide');
+        location.href = './rentcalc.html';
     }
 }
 
-function submitData() {
-
-    preventDefault();
-}
-
-
 const questions = [
     {
-        question: 'Would You Be Interested In Converting Your Rent to Purchase a Home?',
+        question: 'Did you know you could save $10,000+ in your first year owning a home versus renting? ... $100,000s over 5-10 years??',
         answers: [
             {
-                text: 'Yes',
+                text: 'Duhh... Of Course',
                 correct: true,
                 value: 10
             },
             {
-                text: 'I am not sure',
+                text: 'Yeah right...',
                 correct: true,
-                value: 0
+                value: 5
             }
 
         ]
     },
     {
-        question: 'What Would You Estimate Your Credit Score To Be?',
+        question: 'Did you know you could buy a home with as low as a 550 credit score?',
         answers: [
             {
-                text: 'Greater Than 720',
+                text: 'Yes, I totally knew that',
                 correct: true,
                 value: 10 
             },
             {
-                text: 'Between 650-720',
+                text: 'Oh Wow, I did not know that',
                 correct: true,
                 value: 5
-            },
-            {
-                text: 'Somewhere between 550-650',
-                correct: true,
-                value: 3
-            },
-            {
-                text: 'Needs some work :/',
-                correct: true,
-                value: 2
-            },
-            {
-                text: 'I have no idea',
-                correct: true,
-                value: 0
             }
         ]
     },
     {
-        question: 'How Much Would You Be Willing To Put Down As A Down Payment Towards A New Home?',
+        question: 'Did you know you could buy a home with $0 money down?',
         answers: [
             {
-                text: '0%',
-                correct: true,
-                value: 1
-            },
-            {
-                text: '3%',
-                correct: true,
-                value: 3
-            },
-            {
-                text: '5%',
-                correct: true,
-                value: 5
-            },
-            {
-                text: '10%',
+                text: 'Wait what?',
                 correct: true,
                 value: 10
             },
             {
-                text: '20%',
+                text: 'Well... that does not pertain to me',
                 correct: true,
-                value: 20
+                value: 15
             }
         ]
     }
 ]
+
+startGame();

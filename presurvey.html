@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="./assets/styles.css" rel="stylesheet" />
-    <script defer src="./assets/script.js"></script>
+    <script defer src="./assets/presurvey.js"></script>
     <a href="assets/styles.css" type="stylesheet"></a>
   </head>
   <body>
@@ -18,21 +18,7 @@
       <div class="progress-bar">
         <div class="progress"></div>
       </div>
-      <div>
-        <h1 id="question-container-title">
-          Get Started Today
-        </h1>
-        <p id="question-container-description">Sign up to receive a 5-minute consultation either by 📞 phone, 💬 text, or 🌐 LiveChat to get you in less than 21-days</p>
-      </div>
-      <form id="form" class="hide" action="/rentcalc.html" method="get">
-        <h2>Congrats! You Are Ready To Send!</h2>
-        <label for="email">Email Address:</label>
-        <input type="text" id="email" name="email" placeholder="johndoe123@gmail.com">
-        <br><br>
-        <button id="submit-btn" class="submit-btn btn hide controls" type="submit" value="submit">Submit</button>
-      </form>
-
-      <div id="question-container" class="hide">
+      <div id="question-container" class="">
         <div id="question" class="question">Question</div>
         <div id="answer-buttons" class="btn-grid">
           <!-- <button class="btn answer-1">Answer 1</button>
@@ -41,16 +27,13 @@
           <button class="btn answer-4">Answer 4</button> -->
         </div>
       </div>
-      <hr id="line" class="hide">
+      <hr id="line" class="">
       <div class="controls">
-        <button id="back-btn" class="back-btn btn hide">
+        <button id="back-btn" class="back-btn btn">
           <img class="arrow" src="./assets/left-arrow-white.png" />
         </button>
-        <button id="next-btn" class="next-btn btn hide">
+        <button id="next-btn" class="next-btn btn">
           <img class="arrow" src="./assets/right-arrow-white.png" />
         </button>
-      </div>
-      <button id="start-btn" class="start-btn btn">Let's Get Started!</button>
-    </div>
   </body>
 </html>
