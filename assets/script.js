@@ -17,7 +17,8 @@ startButton.addEventListener('click', startGame);
 nextButton.addEventListener('click', () => {
     currentQuestionIndex++;
     setNextQuestion();
-})
+});
+
 submitElement.addEventListener('click', submitData);
 
 function startGame () {
@@ -41,6 +42,7 @@ function setNextQuestion () {
 
 function showQuestion(question) {
     // STEP 3a //
+    nextButton.classList.add('hide');
     questionElement.innerText = question.question;
     question.answers.forEach(answer => {
         const button = document.createElement('button');
@@ -56,7 +58,6 @@ function showQuestion(question) {
 
 function resetState() {
     // STEP 3b/5b //
-    nextButton.classList.add('hide');
     while (answerButtonsElement.firstChild) {
         answerButtonsElement.removeChild(answerButtonsElement.firstChild)
     }
