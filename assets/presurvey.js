@@ -102,33 +102,19 @@ function submitData() {
 
 const questions = [
     {
-        question: 'When Does Your Current Lease End?',
+        question: 'Would You Be Interested In Converting Your Rent to Purchase a Home?',
         answers: [
             {
-                text: 'My Lease Has Already Ended',
+                text: 'Yes',
                 correct: true,
                 value: 10
             },
             {
-                text: 'This Month',
+                text: 'I am not sure',
                 correct: true,
-                value: 5
-            },
-            {
-                text: 'Next Month',
-                correct: true,
-                value: 4
-            },
-            {
-                text: '3-6 Months',
-                correct: true,
-                value: 3
-            },
-            {
-                text: 'More Than 6-months',
-                correct: true,
-                value: 1
+                value: 0
             }
+
         ]
     },
     {
