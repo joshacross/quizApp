@@ -75,7 +75,7 @@ function selectAnswer (e) {
     if (x.length > currentQuestionIndex + 1) {
         nextButton.classList.remove('hide');
     } else {
-        location.href = './rentcalc.html';
+        location.href = 'https://rentcalculator.com/rentcalculatorv2-copy';
     }
 }
 
