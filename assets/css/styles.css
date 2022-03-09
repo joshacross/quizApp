@@ -10,16 +10,15 @@ body {
     height: 100vh;
     background: rgb(32,157,92);
     background: linear-gradient(183deg, rgba(32,157,92,1) 0%, rgba(50,172,109,1) 40%, rgba(22,30,47,1) 100%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    text-align: center;
 }
 
 .container {
-    width: 100VW;
-    height: 100vh;
-    padding: 0 10%;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    margin: 10% auto;
 }
 
 #question {
@@ -28,30 +27,37 @@ body {
 }
 
 .btn-grid {
-    display: grid;
-    grid-template-columns: repeat(2, auto);
-    gap: 10px;
-    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: space-around;
+    flex-wrap: wrap;
+    margin: 10px 0 20px 0;
 }
 
 .btn {
-    font-size: regular;
+    font-size: large;
+    margin: 1%;
+    width: 80%;
     background-color: #161e2f;
     border: 1px solid #161e2f;
     color: #fff;
     border-radius: 10px;
-    padding: 30px 10px;
+    padding: 3% 3%;
     transition: font-size .5s;
     transition-timing-function: ease-in-out;
 }
 
 .btn:hover {
-    border: 1px solid #209d5c;
+    border: 2px solid #161e2f;
+    background-color: transparent;
+    color: #161e2f;
     font-size: medium;
 }
 
 .btn:focus {
     border: 3px solid #209d5c;
+    background-color: #209d5c;
     font-size: medium;
 }
 
@@ -68,15 +74,26 @@ body {
     font-size: x-large;
 }
 
-.arrow {
-    width: 15%;
+.controls {
+    margin: 10% .5%;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    align-items: flex-end;
 }
 
-.controls {
-    display: grid;
-    grid-template-columns: repeat(2, auto);
-    gap: 10px;
-    margin: 20px 0;
+.control-btn {
+    font-size: large;
+    border-radius: 10px;
+    padding: 2.5% 5%;
+    background-color: #161e2f;
+    color: white;
+}
+
+.control-btn:hover {
+    background-color: transparent;
+    border-color: white;
+    color: white;
 }
 
 .hide {
@@ -86,11 +103,12 @@ body {
 
 .question {
     font-size: 150%;
-    padding: 10%;
+    padding: 10% 10% 5% 10%;
 }
 
 .progress-bar {
     width: 100%;
+    margin: 0 0 50px 0;
     border: solid 5px #161e2f;
     border-color: linear-gradient(270deg, rgba(32,157,92,1) 0%, rgba(72,92,134,1) 45%, rgba(22,30,47,1) 100%);
     border-radius: 5px;

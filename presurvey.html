@@ -5,36 +5,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>quizApp using Javascript</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
     <link href="./assets/css/styles.css" rel="stylesheet" />
     <script defer src="./assets/js/presurvey.js"></script>
   </head>
   <body>
     <div class="container">
-      <br>
-      <div class="progress-bar">
-        <div class="progress"></div>
-      </div>
-      <br>
-      <img src="./assets/images/rlogo.png" width="20%" />
-      <div id="question-container" class="">
-        <div id="question" class="question">Question</div>
-        <div id="answer-buttons" class="btn-grid">
-          <!-- <button class="btn answer-1">Answer 1</button>
-          <button class="btn answer-2">Answer 2</button>
-          <button class="btn answer-3">Answer 3</button>
-          <button class="btn answer-4">Answer 4</button> -->
+      <div>
+        <div class="progress-bar">
+          <div class="progress"></div>
+        </div>
+        <img src="./assets/images/rlogo.png" width="20%" />
+        <div id="question-container" class="">
+          <div id="question" class="question">Question</div>
+          <div id="answer-buttons" class="btn-grid">
+            <!-- <button class="btn answer-1">Answer 1</button>
+            <button class="btn answer-2">Answer 2</button>
+            <button class="btn answer-3">Answer 3</button>
+            <button class="btn answer-4">Answer 4</button> -->
+          </div>
+        </div>
+        <!-- <hr id="line" class="" /> -->
+        <div class="controls">
+          <button id="back-btn" class="back-btn control-btn">&lt &lt Go Back</button>
+          <button id="next-btn" class="next-btn control-btn">Next ></button>
         </div>
       </div>
-      <hr id="line" class="">
-      <div class="controls">
-        <button id="back-btn" class="back-btn btn">
-           &lt &lt Go Back
-        </button>
-        <button id="next-btn" class="next-btn btn">
-            Next >
-        </button>
+    </div>
   </body>
 </html>
