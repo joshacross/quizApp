@@ -7,25 +7,36 @@
     <title>This is a test of a document insert</title>
 </head>
 <body>
-    <div id="headerInsert">
+    <div id="congratulations">
         <script>
-  console.log('script start');
-let presentValue = window.hashes[0].split('=');
+    console.log('script start');
+    let tester = 'abcd=efgh=ijkl=mnop=qrstuv=wxyz';
+
+let presentValue = tester.split('=');
   console.log(presentValue[5]);
+let headerInsertEl = document.getElementById('congratulations');
+
   
 let headerElement = () => {
+    console.log(headerInsertEl);
   // create congratulations header
+  let divEl = document.createElement('div');
   let headingEl = document.createElement('h1');
-headingEl.innerText = presentValue[5];
-headerInsert.appendChild(headingEl);
+    headingEl.textContent = presentValue[5];
+    console.log(headingEl);
+    divEl.appendChild(headingEl);
+    console.log(divEl);
   
   // create subheading
-  let subHeadingEl = document.createElement('h2'); subHeadingEl.innerText = ('Congratulations!! You can receive up to ' + presentValue + ' towards the purchase of a new home. Check out some of the homes on the market below for a list of what you can afford. When you are ready, click "Get Started" or chat with us online, and a member of our team can help answer any questions. Happy hunting!' );
+  let subHeadingEl = document.createElement('h2');
+  subHeadingEl.textContent = ('Congratulations!! You can receive up to ' + presentValue + ' towards the purchase of a new home. Check out some of the homes on the market below for a list of what you can afford. When you are ready, click "Get Started" or chat with us online, and a member of our team can help answer any questions. Happy hunting!' );
   
   
-  headerInsert.appendChild(subHeadingEl);
+  divEl.appendChild(subHeadingEl);
+  headerInsertEl.appendChild(divEl);
 
-  console.log(headingEl, subHeadingEl);
+  console.log(headingEl);
+  console.log(subHeadingEl);
   
   console.log('scripts appended');
   
@@ -34,9 +45,6 @@ headerInsert.appendChild(headingEl);
 
 
 headerElement();
-
-
-let headerInsert = document.getElementById('congratulations');
 
   
 console.log('script end');
