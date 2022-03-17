@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>This is a test of a document insert</title>
+</head>
+<body>
+    <div id="headerInsert">
+        <script>
+  console.log('script start');
+let presentValue = window.hashes[0].split('=');
+  console.log(presentValue[5]);
+  
+let headerElement = () => {
+  // create congratulations header
+  let headingEl = document.createElement('h1');
+headingEl.innerText = presentValue[5];
+headerInsert.appendChild(headingEl);
+  
+  // create subheading
+  let subHeadingEl = document.createElement('h2'); subHeadingEl.innerText = ('Congratulations!! You can receive up to ' + presentValue + ' towards the purchase of a new home. Check out some of the homes on the market below for a list of what you can afford. When you are ready, click "Get Started" or chat with us online, and a member of our team can help answer any questions. Happy hunting!' );
+  
+  
+  headerInsert.appendChild(subHeadingEl);
+
+  console.log(headingEl, subHeadingEl);
+  
+  console.log('scripts appended');
+  
+
+}
+
+
+headerElement();
+
+
+let headerInsert = document.getElementById('congratulations');
+
+  
+console.log('script end');
+</script>
+
+    </div>
+    
+</body>
+</html>

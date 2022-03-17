@@ -9,7 +9,8 @@ let x, currentQuestionIndex;
 
 let selectedAnswers = [];
 
-nextButton.addEventListener('click', () => {
+nextButton.addEventListener('click', (e) => {
+    e.preventDefault();
     currentQuestionIndex++;
     setNextQuestion();
 });
@@ -38,14 +39,18 @@ function showQuestion(question) {
     // STEP 3a //
     questionElement.innerText = question.question;
     question.answers.forEach(answer => {
+        event.preventDefault();
         const button = document.createElement('button');
+        const divEl = document.createElement('div');
+        divEl.classList.add('divEl', 'et_pb_button_module_wrapper', 'et_pb_button_2_wrapper', 'et_pb_button_alignment_center', 'et_pb_module');
         button.innerText = answer.text;
-        button.classList.add('btn');
+        button.classList.add('btn', 'et_pb_button', 'et_pb_button_0', 'et_pb_bg_layout_light');
         if (answer.text) {
             button.dataset.text = answer.text;
         }
         button.addEventListener('click', selectAnswer);
-        answerButtonsElement.appendChild(button);
+        answerButtonsElement.appendChild(divEl);
+        divEl.appendChild(button);
     })
 }
 
@@ -57,6 +62,7 @@ function resetState() {
 }
 
 function selectAnswer (e) {
+    e.preventDefault();
     // STEP 4 //
     console.log(e);
     const selectedButton = e.target;
