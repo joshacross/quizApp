@@ -1,56 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>This is a test of a document insert</title>
-</head>
-<body>
+  </head>
+  <body>
     <div id="congratulations">
-        <script>
-    console.log('script start');
-    let tester = 'abcd=efgh=ijkl=mnop=qrstuv=wxyz';
+      <script>
+        console.log("script start");
+        let tester = "abcd=efgh=ijkl=mnop=qrstuv=wxyz";
 
-let presentValue = tester.split('=');
-  console.log(presentValue[5]);
-let headerInsertEl = document.getElementById('congratulations');
+        let presentValue = tester.split("=");
+        console.log(presentValue[5]);
+        let headerInsertEl = document.getElementById("congratulations");
 
-  
-let headerElement = () => {
-    console.log(headerInsertEl);
-  // create congratulations header
-  let divEl = document.createElement('div');
-  let headingEl = document.createElement('h1');
-    headingEl.textContent = presentValue[5];
-    console.log(headingEl);
-    divEl.appendChild(headingEl);
-    console.log(divEl);
-  
-  // create subheading
-  let subHeadingEl = document.createElement('h2');
-  subHeadingEl.textContent = ('Congratulations!! You can receive up to ' + presentValue + ' towards the purchase of a new home. Check out some of the homes on the market below for a list of what you can afford. When you are ready, click "Get Started" or chat with us online, and a member of our team can help answer any questions. Happy hunting!' );
-  
-  
-  divEl.appendChild(subHeadingEl);
-  headerInsertEl.appendChild(divEl);
+        let headerElement = () => {
+          console.log(headerInsertEl);
+          // create congratulations header
+          let divEl = document.createElement("div");
+          let headingEl = document.createElement("h1");
+          headingEl.textContent = presentValue[5].intl.NumberFormat('en-US');
+          console.log(headingEl);
+          divEl.appendChild(headingEl);
+          console.log(divEl);
 
-  console.log(headingEl);
-  console.log(subHeadingEl);
-  
-  console.log('scripts appended');
-  
+          // create subheading
+          let subHeadingEl = document.createElement("h2");
+          subHeadingEl.textContent =
+            "Congratulations!! You can receive up to " +
+            presentValue +
+            ' towards the purchase of a new home. Check out some of the homes on the market below for a list of what you can afford. When you are ready, click "Get Started" or chat with us online, and a member of our team can help answer any questions. Happy hunting!';
 
-}
+          divEl.appendChild(subHeadingEl);
+          headerInsertEl.appendChild(divEl);
 
+          console.log(headingEl);
+          console.log(subHeadingEl);
 
-headerElement();
+          console.log("scripts appended");
+        };
 
-  
-console.log('script end');
-</script>
+        headerElement();
 
+        console.log("script end");
+      </script>
     </div>
-    
-</body>
+  </body>
 </html>
