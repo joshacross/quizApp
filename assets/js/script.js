@@ -1,30 +1,22 @@
-const startButton = document.getElementById('start-btn');
 const nextButton = document.getElementById('next-btn');
 const backButton = document.getElementById('back-btn');
 const questionContainerElement = document.getElementById('question-container');
 const questionContainerTitleElement = document.getElementById('question-container-title');
-const questionContainerDescriptionElement = document.getElementById('question-container-description');
 const questionElement = document.getElementById('question');
 const answerButtonsElement = document.getElementById('answer-buttons');
 const formElement = document.getElementById('form');
 const submitElement = document.getElementById('submit-btn')
 const lineElement = document.getElementById('line');
-const myModal = document.getElementById('myModal')
-const myInput = document.getElementById('myInput')
 
-let x, currentQuestionIndex
+let x, currentQuestionIndex;
 
 let selectedAnswers = [];
 
-function startGame () {
+function startSurvey () {
     // step 1 //
     console.log('start game');
-    startButton.classList.add('hide');
     x = questions
     currentQuestionIndex = 0;
-    questionContainerTitleElement.classList.add('hide');
-    questionContainerElement.classList.remove('hide');
-    questionContainerDescriptionElement.classList.add('hide');
     setNextQuestion();
 }
 
@@ -37,9 +29,6 @@ function setNextQuestion () {
 
 function showQuestion(question) {
     // STEP 3a //
-    backButton.classList.remove('hide');
-    nextButton.classList.remove('hide');
-    lineElement.classList.remove('hide');
     questionElement.innerText = question.question;
     question.answers.forEach(answer => {
         const button = document.createElement('button');
@@ -65,10 +54,23 @@ function selectAnswer (e) {
     console.log(e);
     const selectedButton = e.target;
     const selectedText = selectedButton.dataset.text;
+
+    if (selectedText === selectedText) {
+        nextButton.classList.remove('opacity');
+    } else {
+        return;
+    }
+
+    if (d)
+
     
     selectedAnswers.push(selectedText);
 
     // console.log(selectedAnswers[selectedText]);
+
+    // when answer is selected 
+    // remove opactiy 50% from the next btn and back-btn
+    // if next is selected then add opacity and push selected text
 
     for (let i = 0; i < selectedAnswers.length; i++) {
         console.log(selectedAnswers[i]);
@@ -187,7 +189,7 @@ const questions = [
     }
 ]
 
-startGame();
+startSurvey();
 
 nextButton.addEventListener('click', () => {
     currentQuestionIndex++;
