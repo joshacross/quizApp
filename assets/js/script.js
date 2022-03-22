@@ -9,18 +9,12 @@ const answerButtonsElement = document.getElementById('answer-buttons');
 const formElement = document.getElementById('form');
 const submitElement = document.getElementById('submit-btn')
 const lineElement = document.getElementById('line');
+const myModal = document.getElementById('myModal')
+const myInput = document.getElementById('myInput')
 
 let x, currentQuestionIndex
 
 let selectedAnswers = [];
-
-startButton.addEventListener('click', startGame);
-nextButton.addEventListener('click', () => {
-    currentQuestionIndex++;
-    setNextQuestion();
-});
-
-submitElement.addEventListener('click', submitData);
 
 function startGame () {
     // step 1 //
@@ -192,3 +186,12 @@ const questions = [
         ]
     }
 ]
+
+startGame();
+
+nextButton.addEventListener('click', () => {
+    currentQuestionIndex++;
+    setNextQuestion();
+});
+
+submitElement.addEventListener('click', submitData);
