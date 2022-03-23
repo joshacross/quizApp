@@ -7,6 +7,8 @@ const answerButtonsElement = document.getElementById('answer-buttons');
 const formElement = document.getElementById('form');
 const submitElement = document.getElementById('submit-btn')
 const lineElement = document.getElementById('line');
+const progressEl = document.getElementById('progress');
+const questionNumber = document.getElementsByClassName('questionNumber');
 
 let x, currentQuestionIndex;
 
@@ -14,7 +16,6 @@ let selectedAnswers = [];
 
 function startSurvey () {
     // step 1 //
-    console.log('start game');
     x = questions
     currentQuestionIndex = 0;
     setNextQuestion();
@@ -47,11 +48,11 @@ function resetState() {
     while (answerButtonsElement.firstChild) {
         answerButtonsElement.removeChild(answerButtonsElement.firstChild)
     }
+    nextButton.classList.add('opacity');
 }
 
 function selectAnswer (e) {
     // STEP 4 //
-    console.log(e);
     const selectedButton = e.target;
     const selectedText = selectedButton.dataset.text;
 
@@ -60,25 +61,41 @@ function selectAnswer (e) {
     } else {
         return;
     }
-
-    if (d)
-
-    
-    selectedAnswers.push(selectedText);
-
-    // console.log(selectedAnswers[selectedText]);
-
-    // when answer is selected 
-    // remove opactiy 50% from the next btn and back-btn
+   
     // if next is selected then add opacity and push selected text
+    nextButton.addEventListener('click', () => {
+        selectedAnswers.push(selectedText);
+        for (let i = 0; i < selectedAnswers.length; i++) {
+            console.log(selectedAnswers[i]);
+            console.log('this');
+        }
+        switch (currentQuestionIndex) {
+            case 0:
+                console.log(0);
+                progressEl.style.width = '66%';
+                break;
+            case 2:
+                console.log(2);
+                progressEl.style.width = '80%';
+                break;
+            default:
+                console.log(1);
+                break;
+        }
+        console.log(selectedAnswers);
+            currentQuestionIndex++;
+            console.log(currentQuestionIndex);
+            setNextQuestion();
+        });
 
-    for (let i = 0; i < selectedAnswers.length; i++) {
-        console.log(selectedAnswers[i]);
-    }
+    backButton.addEventListener('click', () => {
+        let back = (currentQuestionIndex - 1)
+        console.log(back);
+        resetState();
 
-
-
-    console.log(selectedAnswers);
+        showQuestion(x[back]);
+    } );
+   
     
     if (x.length > currentQuestionIndex + 1) {
         nextButton.classList.remove('hide');
@@ -87,8 +104,9 @@ function selectAnswer (e) {
         submitElement.classList.remove('hide');
         questionContainerElement.classList.add('hide');
         formElement.classList.remove('hide');
-    }
-}
+        progressEl.style.width = '100%';
+    };
+};
 
 function submitData() {
 
@@ -190,10 +208,5 @@ const questions = [
 ]
 
 startSurvey();
-
-nextButton.addEventListener('click', () => {
-    currentQuestionIndex++;
-    setNextQuestion();
-});
 
 submitElement.addEventListener('click', submitData);
