@@ -12,6 +12,7 @@ body {
     height: 100vh;
     background-color:aliceblue;
     text-align: center;
+    box-shadow: 5px 5px 8px .25 rgb(0, 0, 0);
 }
 
 img {
@@ -127,3 +128,4 @@ input {
     text-align: center;
 
 }
+
