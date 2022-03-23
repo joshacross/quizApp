@@ -5,12 +5,13 @@
 
 body {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
     justify-content: center;
     align-content: center;
     width: 100vw;
     height: 100vh;
-    background-color:aliceblue;
+    background-color: #fff;
     text-align: center;
     box-shadow: 5px 5px 8px .25 rgb(0, 0, 0);
 }
@@ -30,6 +31,7 @@ input {
 
 .container {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
     justify-content: center;
     align-content: center;
@@ -129,3 +131,11 @@ input {
 
 }
 
+#collapse {
+    background-color:#161e2f;
+    color: #fff;
+    font-size:x-large;
+    margin: 3% auto;
+    padding: 20px;
+    transform: rotate(90deg);
+}

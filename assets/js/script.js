@@ -10,6 +10,7 @@ const lineElement = document.getElementById('line');
 const progressEl = document.getElementById('progress');
 const questionNumber = document.getElementById('questionNumber');
 const getStarted = document.getElementById('getStarted');
+const showQuiz = document.getElementById('showQuiz');
 
 let x, currentQuestionIndex;
 
@@ -122,6 +123,9 @@ function submitData() {
     preventDefault();
 }
 
+document.getElementById('collapse').addEventListener('click', () => {
+    showQuiz.style.display = 'none';
+})
 
 const questions = [
     {
