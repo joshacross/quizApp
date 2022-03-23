@@ -19,6 +19,14 @@ img {
     margin: 0 0 100px 0;
 }
 
+label {
+    font-weight: bold;
+}
+
+input {
+    padding: 20px 40px;
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -112,4 +120,10 @@ img {
     transition: width 2s;
     border-color: linear-gradient(270deg, rgba(32,157,92,1) 0%, rgba(72,92,134,1) 45%, rgba(22,30,47,1) 100%);
     transition-timing-function:cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.submit-btn {
+    margin: 0 auto;
+    text-align: center;
+
 }

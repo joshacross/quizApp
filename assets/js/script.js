@@ -8,7 +8,8 @@ const formElement = document.getElementById('form');
 const submitElement = document.getElementById('submit-btn')
 const lineElement = document.getElementById('line');
 const progressEl = document.getElementById('progress');
-const questionNumber = document.getElementsByClassName('questionNumber');
+const questionNumber = document.getElementById('questionNumber');
+const getStarted = document.getElementById('getStarted');
 
 let x, currentQuestionIndex;
 
@@ -73,10 +74,13 @@ function selectAnswer (e) {
             case 0:
                 console.log(0);
                 progressEl.style.width = '66%';
+                questionNumber.innerText = '2';
                 break;
             case 2:
                 console.log(2);
                 progressEl.style.width = '80%';
+                questionNumber.innerText = '3';
+
                 break;
             default:
                 console.log(1);
@@ -101,10 +105,15 @@ function selectAnswer (e) {
         nextButton.classList.remove('hide');
     } else {
         nextButton.classList.add('hide');
+        backButton.classList.add('hide');
         submitElement.classList.remove('hide');
         questionContainerElement.classList.add('hide');
         formElement.classList.remove('hide');
         progressEl.style.width = '100%';
+        getStarted.innerText = 'Way To Go!'
+        const description = document.createElement('h3');
+        description.innerText = 'Everything looks great and ready to send! Please provide your email so we may send you appointment information. For immediate assistance, reach out to our team directly at (615) 822-6220 or by email at support@rentcalculator.com.'
+        getStarted.appendChild('description');
     };
 };
 
@@ -172,6 +181,36 @@ const questions = [
                 text: 'I have no idea',
                 correct: true,
                 value: 0
+            }
+        ]
+    },
+    {
+        question: 'How Much Would You Be Willing To Put Down As A Down Payment Towards A New Home?',
+        answers: [
+            {
+                text: '0%',
+                correct: true,
+                value: 1
+            },
+            {
+                text: '3%',
+                correct: true,
+                value: 3
+            },
+            {
+                text: '5%',
+                correct: true,
+                value: 5
+            },
+            {
+                text: '10%',
+                correct: true,
+                value: 10
+            },
+            {
+                text: '20%',
+                correct: true,
+                value: 20
             }
         ]
     },
