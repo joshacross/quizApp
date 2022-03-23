@@ -1,5 +1,3 @@
-<script>
-  
 //DECLARE PARAMETERS
 let hashParams = window.hashes[0].split('=');
 console.log(hashParams);
@@ -63,5 +61,3 @@ return;
 }
 
 startScript();
-      
-</script>
