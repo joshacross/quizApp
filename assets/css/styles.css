@@ -130,12 +130,3 @@ input {
     text-align: center;
 
 }
-
-#collapse {
-    background-color:#161e2f;
-    color: #fff;
-    font-size:x-large;
-    margin: 3% auto;
-    padding: 20px;
-    transform: rotate(90deg);
-}

@@ -123,10 +123,6 @@ function submitData() {
     preventDefault();
 }
 
-document.getElementById('collapse').addEventListener('click', () => {
-    showQuiz.style.display = 'none';
-})
-
 const questions = [
     {
         question: 'When Does Your Current Lease End?',
