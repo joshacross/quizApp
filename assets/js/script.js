@@ -162,8 +162,7 @@ function submitData(e) {
         }).catch((err) => {
             console.log(err);
         });
-    parent.document.location.href = "https://rentcalculator.com/thank-you-confirmation";
-
+        document.getElementById('submit-btn').submit();
 }
 
 const questions = [
