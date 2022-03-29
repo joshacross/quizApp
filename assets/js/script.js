@@ -72,7 +72,7 @@ function selectAnswer (e) {
    
     // if next is selected then add opacity and push selected text
     nextButton.addEventListener('click', () => {
-        let questionKey = questions(currentQuestionIndex);
+        let questionKey = questions.currentQuestionIndex;
         let answerValue = selectedText;
         let x = questionKey;
         let y = answerValue;
