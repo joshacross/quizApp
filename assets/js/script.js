@@ -137,7 +137,6 @@ function selectAnswer (e) {
 
 function submitData(e) {
 
-    e.preventDefault();
     const email = document.getElementById('email').value.trim();
 
     selectedAnswers = {...selectedAnswers, email }
@@ -162,8 +161,6 @@ function submitData(e) {
         }).catch((err) => {
             console.log(err);
         });
-        let submitBtnEl = document.getElementsByClassName('submit-btn').submit();
-        console.log(submitBtnEl);
 }
 
 const questions = [
