@@ -1,25 +1,23 @@
-const formElement = document.getElementById('form');
-
 const multiply = (num1, num2) => {
     return Math.floor(num1*num2);
 }
 
 let formData = [];
 
-formElement.addEventListener('submit', returnRent);
-
+	
 function returnRent(e) {
-    e.preventDefault();
-
-    const name = document.querySelector('#name').value.trim();
-    const phone = document.querySelector('#phone').value.trim();
-    const rent = document.querySelector('#rent').value.trim();
+    e.preventDefault(); 
+	// e.stopPropagation(); e.stopImmediatePropagation();
+    const name = document.getElementById('et_pb_contact_name_0').value.trim();
+    const phone = document.getElementById('et_pb_contact_phone_0').value.trim();
+    const rent = document.getElementById('et_pb_contact_rent_0').value.trim();
     const pvResult = multiply(rent, 201.47766315152);
-
+    
     let presentValue = document.createElement('input');
     presentValue.value = pvResult;
     presentValue.setAttribute('hidden', true);
-    formElement.appendChild(presentValue);
+    let formEl = document.getElementById('form');
+    formEl.appendChild(presentValue);
     console.log(presentValue);
 
     let formData = {'userName': name, 'userPhone': phone, 'userRent': rent, 'userPV': presentValue.value};
@@ -55,3 +53,9 @@ sendForm('https://hooks.zapier.com/hooks/catch/9671423/b8om3hn/', formData)
     });
     window.location.href = "https://rentcalculator.com/properties/?widget_id=2&kind=0&sf_unit_price=260&sf_min_price=0&sf_max_price="+formData.userPV;
 }
+
+document.addEventListener('DOMContentLoaded', function(){
+	formElement = document.getElementById('form').getElementsByTagName("form");
+	//console.log('DOMContentLoaded');
+	formElement[0].addEventListener('submit', returnRent); 
+});
