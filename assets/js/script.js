@@ -11,7 +11,7 @@ const progressEl = document.getElementById('progress');
 const questionNumber = document.getElementById('questionNumber');
 const getStarted = document.getElementById('getStarted');
 const showQuiz = document.getElementById('showQuiz');
-const pv = 100000
+const pv = 250000
 
 let x, currentQuestionIndex;
 
@@ -230,57 +230,27 @@ const questions = [
         question: 'How Much Would You Be Willing To Put Down As A Down Payment Towards A New Home?',
         answers: [
             {
-                text: (pv*0),
+                text: '$0',
                 correct: true,
                 value: 1
             },
             {
-                text: (pv*.03),
+                text: '$7,500',
                 correct: true,
                 value: 3
             },
             {
-                text: (pv*.05),
+                text: '$12,500',
                 correct: true,
                 value: 5
             },
             {
-                text: (pv*.10),
+                text: '$25,000',
                 correct: true,
                 value: 10
             },
             {
-                text: (pv*.20),
-                correct: true,
-                value: 20
-            }
-        ]
-    },
-    {
-        question: 'How Much Would You Be Willing To Put Down As A Down Payment Towards A New Home?',
-        answers: [
-            {
-                text: '0%',
-                correct: true,
-                value: 1
-            },
-            {
-                text: '3%',
-                correct: true,
-                value: 3
-            },
-            {
-                text: '5%',
-                correct: true,
-                value: 5
-            },
-            {
-                text: '10%',
-                correct: true,
-                value: 10
-            },
-            {
-                text: '20%',
+                text: 'Over $25,000',
                 correct: true,
                 value: 20
             }
