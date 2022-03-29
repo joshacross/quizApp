@@ -257,7 +257,7 @@ const questions = [
                 value: 10
             },
             {
-                text: (pvFormated*.20),
+                text: (pv*.20),
                 correct: true,
                 value: 20
             }
