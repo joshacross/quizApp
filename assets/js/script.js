@@ -136,7 +136,7 @@ function selectAnswer (e) {
 };
 
 function submitData(e) {
-
+    console.log(e);
     const email = document.getElementById('email').value.trim();
 
     selectedAnswers = {...selectedAnswers, email }
