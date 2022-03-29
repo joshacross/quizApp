@@ -72,11 +72,8 @@ function selectAnswer (e) {
    
     // if next is selected then add opacity and push selected text
     nextButton.addEventListener('click', () => {
-        let questionKey = questions.currentQuestionIndex;
-        let answerValue = selectedText;
-        let x = questionKey;
-        let y = answerValue;
-        let keyValue = {x,y};
+
+        const questionKey = questions[currentQuestionIndex].question;
 
         // conditional logic if the selectedAnswer is updated...which... I can go back anyway
         // for (let name in selectedAnswers) {
@@ -86,7 +83,7 @@ function selectAnswer (e) {
         // }
         // if selectedAnswers.hasOwnProperty(keyValue) {
 
-        selectedAnswers = {...selectedAnswers, keyValue };
+        selectedAnswers = {...selectedAnswers, [questionKey] : selectedText }
         console.log(selectedAnswers);
 
         // selectedAnswers.push(selectedText);
@@ -135,14 +132,14 @@ function selectAnswer (e) {
         formElement.classList.remove('hide');
         progressEl.style.width = '100%';
         getStarted.innerText = 'Way To Go!'
-        const description = document.createElement('h3');
-        description.innerText = 'Everything looks great and ready to send! Please provide your email so we may send you appointment information. For immediate assistance, reach out to our team directly at (615) 822-6220 or by email at support@rentcalculator.com.'
-        getStarted.appendChild('description');
     };
 };
 
 function submitData() {
     preventDefault();
+    const email = document.getElementById('email').value.trim();
+
+    selectedAnswers = {...selectedAnswers, email }
 
     //I currently have an array... I need to parse? the array? Split the array
 
