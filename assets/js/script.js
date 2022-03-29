@@ -11,10 +11,16 @@ const progressEl = document.getElementById('progress');
 const questionNumber = document.getElementById('questionNumber');
 const getStarted = document.getElementById('getStarted');
 const showQuiz = document.getElementById('showQuiz');
+const pv = document.getElementById('congratulations-title');
 
 let x, currentQuestionIndex;
 
-let selectedAnswers = [];
+let selectedAnswers = {'presentValue': pv};
+
+// for each answer place key, value inside object... which is not append
+// let timeline = '';
+// let estCredScore = '';
+// let downPayment = '';
 
 function startSurvey () {
     // step 1 //
@@ -66,11 +72,28 @@ function selectAnswer (e) {
    
     // if next is selected then add opacity and push selected text
     nextButton.addEventListener('click', () => {
-        selectedAnswers.push(selectedText);
-        for (let i = 0; i < selectedAnswers.length; i++) {
-            console.log(selectedAnswers[i]);
-            console.log('this');
-        }
+        let questionKey = questions(currentQuestionIndex);
+        let answerValue = selectedText;
+        let x = questionKey;
+        let y = answerValue;
+        let keyValue = {x,y};
+
+        // conditional logic if the selectedAnswer is updated...which... I can go back anyway
+        // for (let name in selectedAnswers) {
+        //     if (selectedAnswers.hasOwnProperty(name)) {
+
+        //     } 
+        // }
+        // if selectedAnswers.hasOwnProperty(keyValue) {
+
+        selectedAnswers = {...selectedAnswers, keyValue };
+        console.log(selectedAnswers);
+
+        // selectedAnswers.push(selectedText);
+        // for (let i = 0; i < selectedAnswers.length; i++) {
+        //     console.log(selectedAnswers[i]);
+        //     console.log('this');
+        // }
         switch (currentQuestionIndex) {
             case 0:
                 console.log(0);
@@ -120,6 +143,33 @@ function selectAnswer (e) {
 
 function submitData() {
 
+
+    //I currently have an array... I need to parse? the array? Split the array
+
+    async function sendForm (url='', data = {}) {
+
+        const response = await fetch(url, {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'omit',
+            // headers: {
+            //     'Accept': 'application/json',
+            //     'Content-Type': 'application/json'
+            // },
+            // redirect: 'follow',
+            referrPolicy: 'strict-origin-when-cross-origin',
+            body: JSON.stringify(data)
+        });
+            return response.json();
+        }
+      
+    sendForm('https://hooks.zapier.com/hooks/catch/9671423/b8up9vj/', selectedAnswers)
+        .then(data => {
+            console.log(data);
+        }).catch((err) => {
+            console.log(err);
+        });
     preventDefault();
 }
 
@@ -188,27 +238,27 @@ const questions = [
         question: 'How Much Would You Be Willing To Put Down As A Down Payment Towards A New Home?',
         answers: [
             {
-                text: '0%',
+                text: (pvFormated*0),
                 correct: true,
                 value: 1
             },
             {
-                text: '3%',
+                text: (pvFormated*.03),
                 correct: true,
                 value: 3
             },
             {
-                text: '5%',
+                text: (pvFormated*.05),
                 correct: true,
                 value: 5
             },
             {
-                text: '10%',
+                text: (pvFormated*.10),
                 correct: true,
                 value: 10
             },
             {
-                text: '20%',
+                text: (pvFormated*.20),
                 correct: true,
                 value: 20
             }
