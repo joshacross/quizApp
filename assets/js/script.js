@@ -131,17 +131,17 @@ function selectAnswer (e) {
         questionContainerElement.classList.add('hide');
         formElement.classList.remove('hide');
         progressEl.style.width = '100%';
-        getStarted.innerText = 'Way To Go!'
+        getStarted.innerText = 'Way To Go!' 
     };
 };
 
-function submitData() {
-    preventDefault();
+function submitData(e) {
+
+    e.preventDefault();
     const email = document.getElementById('email').value.trim();
 
     selectedAnswers = {...selectedAnswers, email }
-
-    //I currently have an array... I need to parse? the array? Split the array
+    console.log(selectedAnswers);
 
     async function sendForm (url='', data = {}) {
 
@@ -150,11 +150,6 @@ function submitData() {
             mode: 'cors',
             cache: 'no-cache',
             credentials: 'omit',
-            // headers: {
-            //     'Accept': 'application/json',
-            //     'Content-Type': 'application/json'
-            // },
-            // redirect: 'follow',
             referrPolicy: 'strict-origin-when-cross-origin',
             body: JSON.stringify(data)
         });
@@ -295,3 +290,4 @@ const questions = [
 startSurvey();
 
 submitElement.addEventListener('click', submitData);
+
