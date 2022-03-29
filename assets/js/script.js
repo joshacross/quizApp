@@ -11,7 +11,7 @@ const progressEl = document.getElementById('progress');
 const questionNumber = document.getElementById('questionNumber');
 const getStarted = document.getElementById('getStarted');
 const showQuiz = document.getElementById('showQuiz');
-const pv = document.getElementById('congratulations-title');
+const pv = 100000
 
 let x, currentQuestionIndex;
 
@@ -142,7 +142,7 @@ function selectAnswer (e) {
 };
 
 function submitData() {
-
+    preventDefault();
 
     //I currently have an array... I need to parse? the array? Split the array
 
@@ -170,7 +170,6 @@ function submitData() {
         }).catch((err) => {
             console.log(err);
         });
-    preventDefault();
 }
 
 const questions = [
@@ -238,22 +237,22 @@ const questions = [
         question: 'How Much Would You Be Willing To Put Down As A Down Payment Towards A New Home?',
         answers: [
             {
-                text: (pvFormated*0),
+                text: (pv*0),
                 correct: true,
                 value: 1
             },
             {
-                text: (pvFormated*.03),
+                text: (pv*.03),
                 correct: true,
                 value: 3
             },
             {
-                text: (pvFormated*.05),
+                text: (pv*.05),
                 correct: true,
                 value: 5
             },
             {
-                text: (pvFormated*.10),
+                text: (pv*.10),
                 correct: true,
                 value: 10
             },
