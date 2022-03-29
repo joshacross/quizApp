@@ -1,12 +1,10 @@
-
+const formElement = document.getElementById('form');
 
 const multiply = (num1, num2) => {
-    return num1*num2;
+    return Math.floor(num1*num2);
 }
 
-let rentPayment, nameValue, phoneNumber;
-
-const formElement = document.getElementById('form');
+let formData = [];
 
 formElement.addEventListener('submit', returnRent);
 
@@ -16,51 +14,44 @@ function returnRent(e) {
     const name = document.querySelector('#name').value.trim();
     const phone = document.querySelector('#phone').value.trim();
     const rent = document.querySelector('#rent').value.trim();
+    const pvResult = multiply(rent, 201.47766315152);
 
-    rent = rentPayment;
-    name = nameValue;
-    phone = phoneNumber;
+    let presentValue = document.createElement('input');
+    presentValue.value = pvResult;
+    presentValue.setAttribute('hidden', true);
+    formElement.appendChild(presentValue);
+    console.log(presentValue);
 
-    // rentPayment = rent;
-    // nameValue = name;
-    // phoneNumber = phone;
+    let formData = {'userName': name, 'userPhone': phone, 'userRent': rent, 'userPV': presentValue.value};
 
-    console.log(rentPayment, nameValue, phoneNumber);
+    alert('CONGRATULATIONS ' + formData.userName + '!!! 🎉 🎉 🎉  Paying $' + formData.userRent + ' in rent could allow you to purchase a house up to $' + formData.userPV);
 
-    getPV();
+//Send Form Data
+
+async function sendForm (url='', data = {}) {
+
+    const response = await fetch(url, {
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'omit',
+        // headers: {
+        //     'Accept': 'application/json',
+        //     'Content-Type': 'application/json'
+        // },
+        // redirect: 'follow',
+        referrPolicy: 'strict-origin-when-cross-origin',
+        body: JSON.stringify(data)
+    });
+        return response.json();
+    }
+
+  
+sendForm('https://hooks.zapier.com/hooks/catch/9671423/b8om3hn/', formData)
+    .then(data => {
+        console.log(data);
+    }).catch((err) => {
+        console.log(err);
+    });
+    window.location.href = "https://rentcalculator.com/properties/?widget_id=2&kind=0&sf_unit_price=260&sf_min_price=0&sf_max_price="+formData.userPV;
 }
-
-function getPV() {
-        let pvResult = multiply(rentPayment, 210.4766315152);
-
-        let presentValue = Math.floor(pvResult)
-
-
-    alert('CONGRATULATIONS ' + nameValue + '!!! 🎉 🎉 🎉  Paying $' + rentPayment + ' in rent could allow you to purchase a house up to $' + presentValue);
-    savePV(name, phone, presentValue, rentPayment);
-}
-
-// save to local storage 
-function savePV(name, phone, presentValue, rent) {
-    console.log('save to local storage');
-    let passedValue = presentValue;
-    let nameValue = name;
-    let phoneNumber = phone;
-    let rentPayment = rent;
-    localStorage.setItem('presentValue', passedValue);
-    localStorage.setItem('name', nameValue);
-    localStorage.setItem('phone', phoneNumber);
-    localStorage.setItem('rent', rentPayment);
-}
-
-// Sending Form Data (POST) with FETCH API
-const userForm = document.getElementById('form');
-
-userForm.addEventListener('submit', function (e) {
-    e.preventDefault();
-
-
-
-
-});
-
