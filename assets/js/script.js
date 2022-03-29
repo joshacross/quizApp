@@ -162,7 +162,7 @@ function submitData(e) {
         }).catch((err) => {
             console.log(err);
         });
-        document.getElementById('submit-btn').submit();
+        submitElement.submit(this);
 }
 
 const questions = [
