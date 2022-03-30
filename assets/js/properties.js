@@ -16,7 +16,7 @@ console.log(headerInsertEl);
 let headerTitleEl = document.getElementById("congratulations-title");
 console.log(headerTitleEl);
 
-let income = parseInt(12*(pv/201.47766315152)/0.45).toLocaleString();
+let income = parseInt((12 * (pv / 201.47766315152)) / 0.45).toLocaleString();
 console.log(income);
 
 // CREATE HEADER FUNCTION
