@@ -11,20 +11,13 @@ const progressEl = document.getElementById('progress');
 const questionNumber = document.getElementById('questionNumber');
 const getStarted = document.getElementById('getStarted');
 const showQuiz = document.getElementById('showQuiz');
-const pv = 250000
 
-let x, currentQuestionIndex;
+let currentQuestionIndex;
 
-let selectedAnswers = {'presentValue': pv};
-
-// for each answer place key, value inside object... which is not append
-// let timeline = '';
-// let estCredScore = '';
-// let downPayment = '';
+let selectedAnswers = {};
 
 function startSurvey () {
     // step 1 //
-    x = questions
     currentQuestionIndex = 0;
     setNextQuestion();
 }
@@ -33,22 +26,23 @@ function setNextQuestion () {
     // STEP 2 // 
     // STEP 5 // 
     resetState();
-    showQuestion(x[currentQuestionIndex]);
+    showQuestion(questions[currentQuestionIndex]);
     }
 
 function showQuestion(question) {
     // STEP 3a //
+    console.log(question);
     questionElement.innerText = question.question;
     question.answers.forEach(answer => {
-        const button = document.createElement('button');
-        button.innerText = answer.text;
-        button.classList.add('btn');
-        if (answer.text) {
-            button.dataset.text = answer.text;
-        }
-        button.addEventListener('click', selectAnswer);
-        answerButtonsElement.appendChild(button);
-    })
+        const answerButton = document.createElement('button');
+        answerButton.innerText = answer.text;
+        answerButton.classList.add('btn');
+        // if (answer.text) {
+        //     answerButton.dataset.text = answer.text;
+        // }
+        answerButton.addEventListener('click', selectAnswer);
+        answerButtonsElement.appendChild(answerButton);
+    });
 }
 
 function resetState() {
@@ -66,63 +60,47 @@ function selectAnswer (e) {
 
     if (selectedText === selectedText) {
         nextButton.classList.remove('opacity');
+        // if next is selected then add opacity and push selected text
+        nextButton.addEventListener('click', () => {
+
+            const questionKey = questions[currentQuestionIndex].question;
+
+            // conditional logic if the selectedAnswer is updated...which... I can go back anyway
+            // for (let name in selectedAnswers) {
+            //     if (selectedAnswers.hasOwnProperty(name)) {
+
+            //     } 
+            // }
+            // if selectedAnswers.hasOwnProperty(keyValue) {
+
+            selectedAnswers = {...selectedAnswers, [questionKey] : selectedText }
+            console.log(currentQuestionIndex);
+            switch (currentQuestionIndex) {
+                case 1:
+                    console.log('Q2');
+                    progressEl.style.width = '66%';
+                    questionNumber.innerText = '2';
+                    break;
+                case 2:
+                    console.log('Q3');
+                    progressEl.style.width = '80%';
+                    questionNumber.innerText = '3';
+
+                    break;
+                default:
+                    console.log(0);
+                    break;
+            }
+                currentQuestionIndex++;
+                console.log('Index [' + currentQuestionIndex + ']');
+                resetState();
+                setNextQuestion();
+            })
     } else {
         return;
     }
-   
-    // if next is selected then add opacity and push selected text
-    nextButton.addEventListener('click', () => {
 
-        const questionKey = questions[currentQuestionIndex].question;
-
-        // conditional logic if the selectedAnswer is updated...which... I can go back anyway
-        // for (let name in selectedAnswers) {
-        //     if (selectedAnswers.hasOwnProperty(name)) {
-
-        //     } 
-        // }
-        // if selectedAnswers.hasOwnProperty(keyValue) {
-
-        selectedAnswers = {...selectedAnswers, [questionKey] : selectedText }
-        console.log(selectedAnswers);
-
-        // selectedAnswers.push(selectedText);
-        // for (let i = 0; i < selectedAnswers.length; i++) {
-        //     console.log(selectedAnswers[i]);
-        //     console.log('this');
-        // }
-        switch (currentQuestionIndex) {
-            case 0:
-                console.log(0);
-                progressEl.style.width = '66%';
-                questionNumber.innerText = '2';
-                break;
-            case 2:
-                console.log(2);
-                progressEl.style.width = '80%';
-                questionNumber.innerText = '3';
-
-                break;
-            default:
-                console.log(1);
-                break;
-        }
-        console.log(selectedAnswers);
-            currentQuestionIndex++;
-            console.log(currentQuestionIndex);
-            setNextQuestion();
-        });
-
-    backButton.addEventListener('click', () => {
-        let back = (currentQuestionIndex - 1)
-        console.log(back);
-        resetState();
-
-        showQuestion(x[back]);
-    } );
-   
-    
-    if (x.length > currentQuestionIndex + 1) {
+    if (questions.length > currentQuestionIndex + 1) {
         nextButton.classList.remove('hide');
     } else {
         nextButton.classList.add('hide');
@@ -134,13 +112,19 @@ function selectAnswer (e) {
         getStarted.innerText = 'Way To Go!' 
     };
 };
+    backButton.addEventListener('click', () => {
+        let back = (currentQuestionIndex - 1)
+        console.log(back);
+        resetState();
 
+        showQuestion(questions[back]);
+    } );
+   
 function submitData(e) {
     e.preventDefault();
     const email = document.getElementById('email').value.trim();
 
     selectedAnswers = {...selectedAnswers, email }
-    console.log(selectedAnswers);
 
     async function sendForm (url='', data = {}) {
 
@@ -161,9 +145,7 @@ function submitData(e) {
         }).catch((err) => {
             console.log(err);
         });
-    let submitEl = document.getElementsByClassName('submit-btn');
-    submitEl.submit();
-}
+};
 
 const questions = [
     {
@@ -223,6 +205,36 @@ const questions = [
                 text: 'I have no idea',
                 correct: true,
                 value: 0
+            }
+        ]
+    },
+    {
+        question: 'How Much Would You Be Willing To Put Down As A Down Payment Towards A New Home?',
+        answers: [
+            {
+                text: '$0',
+                correct: true,
+                value: 1
+            },
+            {
+                text: '$7,500',
+                correct: true,
+                value: 3
+            },
+            {
+                text: '$12,500',
+                correct: true,
+                value: 5
+            },
+            {
+                text: '$25,000',
+                correct: true,
+                value: 10
+            },
+            {
+                text: 'Over $25,000',
+                correct: true,
+                value: 20
             }
         ]
     },
