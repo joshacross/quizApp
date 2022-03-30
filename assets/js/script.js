@@ -158,8 +158,9 @@ let surveyConfirmation = () => {
     const controlsElement = document.getElementById('controls');
     controlsElement.setAttribute('style', 'justify-content: center !important');
     controlsElement.appendChild(continueBtn);
-    continueBtn.addEventListener('click', () => {
-        window.location.href="https://rentcalculator.com/thank-you-confirmation/";
+    continueBtn.addEventListener('click', (e) => {
+        const parent = e.currentTarget.parentNode;
+        parent.document.location.href="https://rentcalculator.com/thank-you-confirmation/";
     });
 };
 
