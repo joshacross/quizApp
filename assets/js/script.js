@@ -161,9 +161,11 @@ let surveyConfirmation = () => {
     continueBtn.addEventListener('click', (e) => {
         const parent = e.currentTarget.parentNode;
         if (parent) {
-            parent.document.location.href="https://rentcalculator.com/thank-you-confirmation/";
+            parent.window.location.href="https://rentcalculator.com/thank-you-confirmation/";
+            console.log('parent');
         } else {
-            location.href="https://rentcalculator.com/thank-you-confirmation";
+            window.location.href="https://rentcalculator.com/thank-you-confirmation";
+            console.log('no-parent detected');
         }
     });
 };
