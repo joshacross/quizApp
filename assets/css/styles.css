@@ -127,3 +127,8 @@ input {
     text-align: center;
 
 }
+
+.continueContainer {
+    display: flex;
+    justify-content: center;
+}

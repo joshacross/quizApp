@@ -145,6 +145,22 @@ function submitData(e) {
         }).catch((err) => {
             console.log(err);
         });
+    surveyConfirmation();
+};
+
+let surveyConfirmation = () => {
+    formElement.classList.add('hide');
+
+    const continueBtn = document.createElement('button');
+    getStarted.textContent = 'Your Survey Has Been Sent!';
+    continueBtn.innerText = 'continue';
+    continueBtn.classList.add('btn');
+    const controlsElement = document.getElementById('controls');
+    controlsElement.setAttribute('style', 'justify-content: center !important');
+    controlsElement.appendChild(continueBtn);
+    continueBtn.addEventListener('click', () => {
+        window.location.href="https://rentcalculator.com/thank-you-confirmation/";
+    });
 };
 
 const questions = [
