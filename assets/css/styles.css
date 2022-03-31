@@ -37,6 +37,12 @@ input {
     margin: 0 auto;
 }
 
+.start-body {
+    margin: 0 10%;
+    padding: 3%;
+    border-bottom:solid 1px #161e2f
+}
+
 #question {
     font-weight: bold;
     font-size: x-large;

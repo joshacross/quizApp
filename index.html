@@ -25,30 +25,31 @@
     <h3>
       Free and Complete Access
     </h3>
-    <form class="container">
+    <form id='start-form' class="container">
       <label for="email">Email Address:</label>
       <br>
-      <input type="email" id="email" name="email" placeholder="johndoe@gmail.com" />
+      <input type="email" id="email" name="email" required placeholder="johndoe@gmail.com" />
       <br>
-      <button id='startSurvey' class="btn">Complete</button>
-      <p>
+      <button id='start-btn' class="btn start-btn">Complete</button>
+      <p class="start-body">
         By providing your email, you are consenting to allow us to provide you with helpful information regarding homeownership, rent calculator, and its affiliated services, including but not limited to home financing and current real estate .
         <br>
         <br>
         We promise not to spam.
         <br>
         For more information view our <a href="https://rentcalculator.com/privacy" target="_parent">Privacy Policy</a>
-      </p>
+      </p>    
+      <hr>
+      <p>or</p>
+      <div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-layout="rounded" data-auto-logout-link="false" data-use-continue-as="false"></div>
+      </div>
     </form>
-    <hr>
-    <p>or</p>
-    <div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-layout="rounded" data-auto-logout-link="false" data-use-continue-as="false"></div>
-    </div>
-      <div class="hide"> <p>
+
+      <div id= 'questionCounter' class="hide"> <p>
         <span id="questionNumber">1</span>
          of 3</p>
          </div>
-      <div class="progress-bar hide">
+      <div id='progressBar' class="progress-bar hide">
         <div id="progress"></div>
       </div>
       <form id="form" class="hide" action="https://rentcalculator.com/thank-you-confirmation" method="post" target='_parent'>        <h2>Congrats! You Are Ready To Send!</h2>

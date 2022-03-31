@@ -11,12 +11,74 @@ const progressEl = document.getElementById('progress');
 const questionNumber = document.getElementById('questionNumber');
 const getStarted = document.getElementById('getStarted');
 const showQuiz = document.getElementById('showQuiz');
+const email = document.getElementById('email');
+const startBtn = document.getElementById('start-btn');
+const startForm = document.getElementById('start-form');
+const questionCounter = document.getElementById('questionCounter');
+const progressBar = document.getElementById('progressBar');
 
 let currentQuestionIndex;
 
 let selectedAnswers = {};
 
+email.addEventListener('focus', validateEmail(email));
+//declare variables
+// add event listener
+startBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    let emailResponse = {'email': email.text}
+    localStorage.setItem(emailResponse);
+    console.log(email);
+    if (validateEmail) {
+        email.toLocalStorage(push);
+        // submit data to update DB? 
+        async function sendForm (url='', data = {}) {
+
+            const response = await fetch(url, {
+                method: 'POST',
+                mode: 'cors',
+                cache: 'no-cache',
+                credentials: 'omit',
+                referrPolicy: 'strict-origin-when-cross-origin',
+                body: JSON.stringify(data)
+            });
+                return response.json();
+            }
+          
+        sendForm('https://hooks.zapier.com/hooks/catch/9671423/b8up9vj/', email)
+            .then(data => {
+                console.log(data);
+            }).catch((err) => {
+                console.log(err);
+            });
+        startSurvey() 
+    } else {
+        alert('must enter a valid email address');
+        return;
+    };
+})
+
+let validateEmail = (email) => {
+    var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
+
+
+// add regex to email field
+// also add a complete facebook message so it can pass to next screen (not there yet);
+
+// Email is filled in, user clicks > Log Promise 
+// // I need to declare the const and set event listener to listen for click 
+// store in local storage and send
+// create account? Can I store using an iFrame? 
+// after user clicks hide elements and show hidden elements
+// start survey 
+
 function startSurvey () {
+    startForm.classList.add('hide');
+    questionCounter.classList.remove('hide');
+    progressBar.classList.remove('hide');
+
     // step 1 //
     currentQuestionIndex = 0;
     setNextQuestion();
