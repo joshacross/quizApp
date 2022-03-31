@@ -286,7 +286,7 @@ const questions = [
     }
 ]
 
-startSurvey();
+// startSurvey();
 
 submitElement.addEventListener('click', submitData);
 

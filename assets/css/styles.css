@@ -21,11 +21,12 @@ img {
 }
 
 label {
-    font-weight: bold;
+    font-weight: light;
 }
 
 input {
     padding: 20px 40px;
+    border-radius: 10px;
 }
 
 .container {
