@@ -23,7 +23,12 @@ function returnRent(e) {
     let formData = {'userName': name, 'userPhone': phone, 'userRent': rent, 'userPV': presentValue.value};
 
     alert('CONGRATULATIONS ' + formData.userName + '!!! 🎉 🎉 🎉  Paying $' + formData.userRent + ' in rent could allow you to purchase a house up to $' + formData.userPV);
-
+let setStorage = () => {
+    localStorage.setItem('pv', presentValue.value);
+    localStorage.setItem('name', name);
+    localStorage.setItem('phone', phone);
+    localStorage.setItem('rent', rent);
+}
 //Send Form Data
 
 async function sendForm (url='', data = {}) {
@@ -43,6 +48,8 @@ async function sendForm (url='', data = {}) {
     });
         return response.json();
     }
+
+    setStorage();
 
   
 sendForm('https://hooks.zapier.com/hooks/catch/9671423/b8om3hn/', formData)
