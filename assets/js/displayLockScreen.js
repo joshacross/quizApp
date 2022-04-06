@@ -1,55 +1,35 @@
 //declare variables 
-const displayClicked = document.querySelector('[id*="wpl_prp_cont"]');
+const displayClicked = document.querySelector('[id*="prp_link"]');
+console.log(displayClicked);
 const showSurvey = document.getElementById('showSurvey');
+const viewDetail = document.getElementsByClassName('view_detail');
+const submitBtn = document.getElementById('submit-btn');
 
-let detailClickedCount = 0;
-let detailCountMax = 3;
-let surveyCompleted = false;
+let surveyCompleted = Boolean;
 
 let loadStorage = () => {
-    pv = localStorage.getItem('presentValue');
     surveyCompleted = localStorage.getItem('survey');
-    detailClickedArr = localStorage.getItem('detailClickedCount');
 
-    if (detailClickedArr >= 3) {
-        startSurvey();
+    if (surveyCompleted) {
+        console.log('surveySeen');
+        viewDetail.setAttribute('data-trigger-element-class', 'surveyComplete');
         return;
     } else {
+        console.log('showSurvey');
         return;
     }
 };
 
-let detailClicked = () => {
-    detailClickedCount++;
-    localStorage.setItem('detailClickedCount', detailClickedCount);
-
-    if (detailClickedCount >= detailCountMax ) {
-        startSurvey();
-    } else {
-        return;
-    }
-}
-
-let startSurvey = () => {
-    if (!surveyCompleted) {
-        showSurvey.setAttribute('style', 'display: block;');
-    completeSurvey();
+submitBtn.addEventListener('click', () => {
+    console.log('surveycomplete');
+    surveyCompleted = true;
+    localStorage.setItem('survey', true);
     return;
-    }
-    else {
-        return;
-    }
-}
+});
 
-let completeSurvey = () => {
-    document.getElementById('surveyComplete').addEventListener('click', () => {
-        showSurvey.setAttribute('style', 'display: none');
-        surveyCompleted = true;
-        localStorage.setItem('survey', surveyCompleted);
-        return;
-    });
-}
+
 loadStorage();
 
-displayClicked.addEventListener('click', detailClicked);
+// also... 
 
+// I need to set some Params/hashes... So how do we do that... 
