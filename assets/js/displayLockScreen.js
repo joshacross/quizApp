@@ -3,7 +3,7 @@ const displayClicked = document.querySelector('[id*="prp_link"]');
 console.log(displayClicked);
 const showSurvey = document.getElementById('showSurvey');
 const viewDetail = document.getElementsByClassName('view_detail');
-const submitBtn = document.getElementById('submit-btn');
+const submitBtn = document.getElementById('start-btn');
 
 let surveyCompleted = Boolean;
 
