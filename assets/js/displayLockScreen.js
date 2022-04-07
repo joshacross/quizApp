@@ -1,9 +1,10 @@
 //declare variables 
 const showSurvey = document.getElementById('showSurvey');
-const viewDetail = document.querySelector('[id*="prp_link"]');
-
-const startBtn = document.getElementById('start-btn');
-console.log(startBtn);
+const formEl = document.getElementById('formId');
+// const emailSurvey = document.getElementById('emailSurvey');
+// const modalPrevention = emailSurvey.firstChild;
+// console.log(emailSurvey);
+// console.log(modalPrevention);
 
 let surveyCompleted = Boolean;
 
@@ -13,6 +14,9 @@ let loadStorage = () => {
     if (surveyCompleted) {
         console.log('surveySeen');
             showSurvey.setAttribute('hidden', true);
+            const emailSurvey = document.getElementById('emailSurvey');
+            console.log(emailSurvey);
+            modalPrevention.setAttribute('data-trigger-element-class', 'surveySeen');
         return;
     } else {
         console.log('showSurvey');
@@ -20,37 +24,37 @@ let loadStorage = () => {
     }
 };
 
-startBtn.addEventListener('click', (e) => {
+formEl.addEventListener('submit', (e) => {
     e.preventDefault();
-    const emailEl = document.getElementById('email');
-    console.log(emailEl);
-    // if (validateEmail) {
-    //     localStorage.setItem('email', emailEl);
-    //     // submit data to update DB? 
-    //     async function sendForm (url='', data = {}) {
+    const emailEl = document.getElementById('email').value;
+    if (validateEmail) {
+        localStorage.setItem('email', emailEl);
+        // submit data to update DB? 
+        async function sendForm (url='', data = {}) {
 
-    //         const response = await fetch(url, {
-    //             method: 'POST',
-    //             mode: 'cors',
-    //             cache: 'no-cache',
-    //             credentials: 'omit',
-    //             referrPolicy: 'strict-origin-when-cross-origin',
-    //             body: JSON.stringify(data)
-    //         });
-    //             return response.json();
-    //         }
+            const response = await fetch(url, {
+                method: 'POST',
+                mode: 'cors',
+                cache: 'no-cache',
+                credentials: 'omit',
+                refererPolicy: 'strict-origin-when-cross-origin',
+                body: JSON.stringify(data)
+            });
+                return response.json();
+            }
           
-    //     sendForm('https://hooks.zapier.com/hooks/catch/9671423/b8up9vj/', emailEl)
-    //         .then(data => {
-    //             console.log(data);
-    //         }).catch((err) => {
-    //             console.log(err);
-    //         });
-    //     hideForm();
-    // } else {
-    //     alert('must enter a valid email address');
-    //     return;
-    // };
+        sendForm('https://hooks.zapier.com/hooks/catch/9671423/b8up9vj/', emailEl)
+            .then(data => {
+                console.log(data);
+            }).catch((err) => {
+                console.log(err);
+            });
+            window.location.href = 'https://rentcalculator.com/properties';
+        // hideForm();
+    } else {
+        alert('must enter a valid email address');
+        return;
+    };
 });
 
 let validateEmail = (emailEl) => {
@@ -59,9 +63,13 @@ let validateEmail = (emailEl) => {
   }
 
   let hideForm = () => {
+    // const emailSurvey = document.getElementById('emailSurvey');
+    // const modalPrevention = emailSurvey.firstChild;
     surveyCompleted = true;
     localStorage.setItem('survey', true);
     showSurvey.setAttribute('hidden', true);
+    // emailSurvey.setAttribute('hidden', true);
+    // modalPrevention.setAttribute('data-trigger-element-class', 'surveySeen');
     return;
 }
 
