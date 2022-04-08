@@ -1,11 +1,11 @@
-const properties = "https://rentcalculator.com/properties/";
+const baseUrl = "https://rentcalculator.com/properties/";
 //declare variables
 console.log(localStorage);
 let pv = localStorage.getItem("pv");
 console.log(pv);
 
 let showHeader = () => {
-  if (window.location.href === properties) {
+  if (window.location.href.includes(baseUrl)) {
       console.log('this is properties page');
     //CONVERT PV TO A FORMATTED STRING
     let pvFormated = parseInt(pv).toLocaleString();
