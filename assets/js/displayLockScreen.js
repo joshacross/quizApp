@@ -1,6 +1,10 @@
 //declare variables 
 const showSurvey = document.getElementById('showSurvey');
 const formEl = document.getElementById('formId');
+const modalTextContentBefore = document.getElementById('modal-text-content-before');
+const modalHeading = document.getElementById('modal-heading-content');
+const modalBody = document.getElementById('modal-body-content');
+
 let emailSurvey, emailSurveyChild;
 
 let surveyCompleted = Boolean;
@@ -55,9 +59,9 @@ formEl.addEventListener('submit', (e) => {
             // set surveyCompleted to be true and push to local storage:
             surveyCompleted = true;
             localStorage.setItem('survey', true);
-            showSurvey.setAttribute('hidden', true);
-            emailSurvey.setAttribute('hidden', true);
-            console.log('emailSurveyChild:after', emailSurveyChild);
+            // showSurvey.setAttribute('hidden', true);
+            // emailSurvey.setAttribute('hidden', true);
+            refreshPage();
             return;
             // window.location.href = 'https://rentcalculator.com/properties' + '?widget_id=2&kind=0&sf_unit_price=260&sf_min_price=0&sf_max_price=' + pv + '&wplorderby=p.price_si&wplorder=DESC&wplpage=1';
         // hideForm();
@@ -72,4 +76,21 @@ let validateEmail = (emailEl) => {
     return re.test(String(emailEl).toLowerCase());
   }
 setTimeout(() => {console.log('Data Has Loaded')}, 5000);
+
+let refreshPage = () => {
+    formEl.setAttribute('hidden', true);
+    modalHeading.innerHTML = 'Thank You';
+    modalBody.innerHTML = 'One moment while we process your request...';
+    setTimeout(() => {
+        let presentValue = localStorage.getItem('pv');
+        window.location.href = 'https://rentcalculator.com/properties' + '?widget_id=2&kind=0&sf_unit_price=260&sf_min_price=0&sf_max_price=' + presentValue + '&wplorderby=p.price_si&wplorder=DESC&wplpage=1';
+        return;
+    }, 3000);
+}
+
 loadStorage();
+
+// 1.) I need to combine scripts so I can reload the page
+// 2.) I need Facebook script to work
+// 3.) I need pv to be placed back in the href... 
+// 4.) I need to create a separate DIV to be placed at the top... So I need a script with congratulations
