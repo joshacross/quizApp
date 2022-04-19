@@ -1,59 +1,76 @@
-
-//Controls
 const nextButton = document.getElementById('next-btn');
 const backButton = document.getElementById('back-btn');
-// Question and Answers
 const questionContainerElement = document.getElementById('question-container');
+const questionContainerTitleElement = document.getElementById('question-container-title');
 const questionElement = document.getElementById('question');
 const answerButtonsElement = document.getElementById('answer-buttons');
-
-// Final Complete button to submit Array data
-const submitElement = document.getElementById('submit-btn');
-
-// Counter Elements
+const formElement = document.getElementById('form');
+const submitElement = document.getElementById('submit-btn')
 const lineElement = document.getElementById('line');
 const progressEl = document.getElementById('progress');
 const questionNumber = document.getElementById('questionNumber');
+const getStarted = document.getElementById('getStarted');
+const showQuiz = document.getElementById('showQuiz');
+const email = document.getElementById('email');
+const startBtn = document.getElementById('start-btn');
+const startForm = document.getElementById('start-form');
 const questionCounter = document.getElementById('questionCounter');
 const progressBar = document.getElementById('progressBar');
 
-// start Survey 
-const startBtn = document.getElementById('start-btn');
-const startForm = document.getElementById('start-form');
-
-// End Questions 
-const eQ1 = document.getElementById('eQ1');
-const eQ2 = document.getElementById('eQ2');
-const eQ3 = document.getElementById('eQ3');
-
-// empty variable to hold 
-let currentQuestionIndex = 0;
+let currentQuestionIndex;
 
 let selectedAnswers = {};
 
-let validateEmail = (email) => {
-    var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
-  }
-// email.addEventListener('focus', validateEmail(email));
+
+
 //declare variables
 // add event listener
 startBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    const email = document.getElementById('email').value.trim();
-    validateEmail(email);
-    if (validateEmail) {
-        localStorage.setItem('email', email);
-        selectedAnswers = { 'email': email };
-        startSurvey() 
-    } else {
-        alert('must enter a valid email address');
-        return;
-    };
+    // validateEmail(email);
+    let emailResponse = {'email': email.text}
+    localStorage.setItem(emailResponse);
+    console.log(email);
+    startSurvey();
+    // if (validateEmail) {
+    //     email.toLocalStorage(push);
+    //     // submit data to update DB? 
+    //     // async function sendForm (url='', data = {}) {
+
+    //     //     const response = await fetch(url, {
+    //     //         method: 'POST',
+    //     //         mode: 'cors',
+    //     //         cache: 'no-cache',
+    //     //         credentials: 'omit',
+    //     //         referrPolicy: 'strict-origin-when-cross-origin',
+    //     //         body: JSON.stringify(data)
+    //     //     });
+    //     //         return response.json();
+    //     //     }
+          
+    //     // sendForm('https://hooks.zapier.com/hooks/catch/9671423/b8up9vj/', email)
+    //     //     .then(data => {
+    //     //         console.log(data);
+    //     //     }).catch((err) => {
+    //     //         console.log(err);
+    //     //     });
+    //     startSurvey() 
+    // } else {
+    //     alert('must enter a valid email address');
+    //     return;
+    // };
 })
 
 
+
+
+// add regex to email field
 // also add a complete facebook message so it can pass to next screen (not there yet);
+
+// Email is filled in, user clicks > Log Promise 
+// // I need to declare the const and set event listener to listen for click 
+// store in local storage and send
+// create account? Can I store using an iFrame? 
 // after user clicks hide elements and show hidden elements
 // start survey 
 
@@ -61,9 +78,9 @@ function startSurvey () {
     startForm.classList.add('hide');
     questionCounter.classList.remove('hide');
     progressBar.classList.remove('hide');
-    questionContainerElement.classList.remove('hide');
 
     // step 1 //
+    currentQuestionIndex = 0;
     setNextQuestion();
 }
 
@@ -154,7 +171,6 @@ function selectAnswer (e) {
         questionContainerElement.classList.add('hide');
         formElement.classList.remove('hide');
         progressEl.style.width = '100%';
-        // have to change this... 
         getStarted.innerText = 'Way To Go!' 
     };
 };
@@ -162,6 +178,7 @@ function selectAnswer (e) {
         let back = (currentQuestionIndex - 1)
         console.log(back);
         resetState();
+
         showQuestion(questions[back]);
     } );
    
@@ -195,6 +212,7 @@ function submitData(e) {
 
 let surveyConfirmation = () => {
     formElement.classList.add('hide');
+
     const continueBtn = document.createElement('button');
     getStarted.textContent = 'Your Survey Has Been Sent!';
     continueBtn.innerText = 'continue';
@@ -327,29 +345,15 @@ const questions = [
                 value: 20
             }
         ]
-    },
-    {
-        question: 'Congratulations! You have unlocked FREE and COMPLETE access to view new homes you on the market today that could pre-qualify to purchase with the rent that you pay per month, or even less than you pay per month! Click next to continue',
-        answers: [
-            {
-                text: 'Continue',
-                correct: true,
-                value: 1
-            }
-        ]
     }
 ]
 
-let endSurvey = () => {
-    // hide anwers and questions 
-    // show last questions
-    // create but
-
-}
+// let validateEmail = (email) => {
+//     var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+//     return re.test(String(email).toLowerCase());
+//   }
 
 // startSurvey();
 
 submitElement.addEventListener('click', submitData);
-
-
 

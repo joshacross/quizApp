@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rent Calculator Survey Version 2.0</title>
+</head>
+<body>
+    <form id="formId" style="display: flex; flex-direction: column; align-content: center; align-items: center; justify-content: space-between;">
+    
+        <div id="fb-root"></div>
+            
+            <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v13.0&appId=385113425720095&autoLogAppEvents=1" nonce="D2bvZJ1S"></script>
+            
+        <label for="email" style="font: montserrat; font-weight: thin; font-size: 20px">Email Address:</label>
+            
+        <input type="email" placeholder="janesmith@gmail.com" id="email" name="email" class="emailInput" style="width: 300px; padding: 20px; text-align: center; border-radius: 5px;"/>
+            <button id="start-btn" name="submit" type="submit" value="Submit" style="margin-top:20px; width: 250px; padding: 20px; border-radius:20px">Submit
+            
+            </button>
+          <br>
+          <p>
+            or
+          </p>
+            <br>
+            <br>
+                <div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-layout="rounded" data-auto-logout-link="false" data-use-continue-as="false"></div>
+        </form>
+        <script src="./assets/js/rentSurvey.js"></script>
+</body>
+</html>
