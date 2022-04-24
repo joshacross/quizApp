@@ -1,5 +1,6 @@
 
 //Controls
+const controls = document.getElementById('controls');
 const nextButton = document.getElementById('next-btn');
 const backButton = document.getElementById('back-btn');
 // Question and Answers
@@ -62,6 +63,7 @@ function startSurvey () {
     questionCounter.classList.remove('hide');
     progressBar.classList.remove('hide');
     questionContainerElement.classList.remove('hide');
+    controls.classList.remove('hide');
 
     // step 1 //
     setNextQuestion();
@@ -150,14 +152,15 @@ function selectAnswer (e) {
     } else {
         nextButton.classList.add('hide');
         backButton.classList.add('hide');
-        submitElement.classList.remove('hide');
         questionContainerElement.classList.add('hide');
-        formElement.classList.remove('hide');
         progressEl.style.width = '100%';
+        eQ1.classList.remove('hide');
+        
+        submitElement.classList.remove('hide');
         // have to change this... 
-        getStarted.innerText = 'Way To Go!' 
     };
 };
+
     backButton.addEventListener('click', () => {
         let back = (currentQuestionIndex - 1)
         console.log(back);
@@ -194,7 +197,6 @@ function submitData(e) {
 };
 
 let surveyConfirmation = () => {
-    formElement.classList.add('hide');
     const continueBtn = document.createElement('button');
     getStarted.textContent = 'Your Survey Has Been Sent!';
     continueBtn.innerText = 'continue';
@@ -325,16 +327,6 @@ const questions = [
                 text: 'Over $25,000',
                 correct: true,
                 value: 20
-            }
-        ]
-    },
-    {
-        question: 'Congratulations! You have unlocked FREE and COMPLETE access to view new homes you on the market today that could pre-qualify to purchase with the rent that you pay per month, or even less than you pay per month! Click next to continue',
-        answers: [
-            {
-                text: 'Continue',
-                correct: true,
-                value: 1
             }
         ]
     }
