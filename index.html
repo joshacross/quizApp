@@ -14,11 +14,11 @@
     <!-- <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v13.0&appId=385113425720095&autoLogAppEvents=1" nonce="D2bvZJ1S"></script> -->
   </head>
   <body>
-    <div class='container'>
-      <img src="./assets/images/rentcalclogo.png"
-    </br>
+    <!-- Logo Asset -->
+    <div id="start" class="container">
+      <img src="./assets/images/rentcalclogo.png" alt="" />
     <!-- Start Survey Form -->
-      <div>
+      <div id="formSurveyPt1" class="container">
         <form id='start-form' class="container">
         <h1 id="getStarted">
           View The Homes You Could Afford With The Rent That You Pay Per Month
@@ -44,7 +44,6 @@
         <p>or</p>
         <div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-layout="rounded" data-auto-logout-link="false" data-use-continue-as="false"></div>
         </form>
-      </div>
     <!-- End Start Survey Form-->
     <!-- Survey -->
         <div id='questionCounter' class="hide">
@@ -74,13 +73,17 @@
           </button>
         </div>
       </div>
+    </div>
       <!-- END SURVEY -->
-      <div id="endQuestions" class="hide">
-        <div id="eQ1">
-          <h3>Congratulations! You have received FREE and COMPLETE access to view homes you could pre-qualify with the rent that you pay per month, or even less than you pay in rent per month!</h3>
-          <p>Click Next to Continue</p>
+      <!-- FORM SURVEY PART 2-->
+      <div id="endQuestions" class="container hide">
+        <div id="eQ1" class="hide">
+          <h1>Congratulations!</h1>
+          <h3>You have received FREE and COMPLETE access to see the homes you could pre-qualify for with the rent that you pay per month, or even less than you pay in rent per month!</h3>
+          <p>Click "Next" to Continue</p>
+          <button id="endNextBtn" class="btn">Next</button>
         </div>
-        <div id="eQ2">
+        <div id="eQ2" class="hide">
           <h3>
             Thank you for your time in filling out our survey. We have added a complimentary financial advisor session with one of our trusted partners</h3>
             <p>That is over a $100 value</p>
@@ -88,19 +91,28 @@
             <h3>
               Would you like to schedule your complimentary consultation now? 
             </h3>
-            <button class="btn" data="schedule">
+            <button id="showSchedule" class="btn" data="schedule">
               Yes, I would like to schedule a financial advisor consultation
             </button>
-            <button class="btn" data="noSchedule">
+            <button id="skipSchedule" class="btn" data="noSchedule">
               Maybe another time
             </button>
           </h3>
         </div>
-        <div id="eQ3">
+        <div id="eQ3" class="hide">
           <h3> No Sweat! We have sent a discount code to your email. </h3>
           <p>When you're ready, simply go to <a href="https://rentcalculator.com/advisor target=_blank">https://rentcalculator.com/advisor</a> or give us a call at <a href="tel:16158226220">(615) 822-6220</a>. Click complete to finish</p>
-          <button id="submit-btn" class="submit-btn btn hide" type="submit" value="submit">Complete</button>
+          <button id="complete-btn" class="submit-btn btn hide" type="submit" value="submit">Complete</button>
         </div>
       </div>
+      <!-- END FORM SURVEY PART 2-->
   </body>
 </html>
+
+<!-- 
+
+  The current issue:
+  When I show question is displays the question and all of that is correct,
+  but as soon as I hit the next button on the second answer... 
+
+-->
