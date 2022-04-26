@@ -91,9 +91,11 @@
             <h3>
               Would you like to schedule your complimentary consultation now? 
             </h3>
-            <button id="showSchedule" class="btn" data="schedule">
-              Yes, I would like to schedule a financial advisor consultation
-            </button>
+            <!-- Calendly link widget begin -->
+            <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+            <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+            <button id="showSchedule" style="text-decoration: none;" class="btn" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/jcross-prmi/15min'});return false;">Schedule time with me </button>
+            <!-- Calendly link widget end -->
             <button id="skipSchedule" class="btn" data="noSchedule">
               Maybe another time
             </button>
@@ -102,7 +104,7 @@
         <div id="eQ3" class="hide">
           <h3> No Sweat! We have sent a discount code to your email. </h3>
           <p>When you're ready, simply go to <a href="https://rentcalculator.com/advisor target=_blank">https://rentcalculator.com/advisor</a> or give us a call at <a href="tel:16158226220">(615) 822-6220</a>. Click complete to finish</p>
-          <button id="complete-btn" class="submit-btn btn hide" type="submit" value="submit">Complete</button>
+          <button id="complete-btn" class="submit-btn btn" type="submit" value="submit">Complete</button>
         </div>
       </div>
       <!-- END FORM SURVEY PART 2-->

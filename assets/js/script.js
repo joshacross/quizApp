@@ -28,6 +28,8 @@ const startForm = document.getElementById('start-form');
 const endQuestionsContainer = document.getElementById('endQuestions');
 const eQ1 = document.getElementById('eQ1');
 const eQ2 = document.getElementById('eQ2');
+const showSchedule = document.getElementById('showSchedule');
+const skipSchedule = document.getElementById('skipSchedule');
 const eQ3 = document.getElementById('eQ3');
 
 // set question index to 0
@@ -165,9 +167,6 @@ let selectAnswer = (e) => {
 
 let submitData = (e) => {
     e.preventDefault();
-    const email = document.getElementById('email').value.trim();
-
-    selectedAnswers = {...selectedAnswers, email }
 
     async function sendForm (url='', data = {}) {
 
@@ -205,16 +204,33 @@ let surveyConfirmation = () => {
 };
 
 let endSurvey = () => {
+        const endNextBtn = document.getElementById('endNextBtn')
         formSurveyPt1.classList.add('hide');
         endQuestionsContainer.classList.remove('hide');
         eQ1.classList.remove('hide');
+
+        endNextBtn.addEventListener('click', showEQ2);
         return;
-//and questions 
-    // show last questions
-    // add event listener on btn
-    // if true button is clicked then schedule
-    // if false is clicked show no problem and continue to push data
-    // then once it is clicked, push data and we only need this at the end so the even listener at the end gets put into this function.
+}
+
+let showEQ2 = () => {
+    const showSchedule = document.getElementById('showSchedule');
+    const skipSchedule = document.getElementById('skipSchedule');
+
+    eQ1.classList.add('hide');
+    eQ2.classList.remove('hide');
+}
+
+let showScheduleCalendar = () => {
+    console.log('show schedule');
+    return;
+}
+
+let scheduleSkipped = () => {
+    console.log('schedule skipped');
+    eQ2.classList.add('hide');
+    eQ3.classList.remove('hide');
+    return;
 }
 
 // when survey is complete, console.log complete
@@ -326,5 +342,8 @@ backButton.addEventListener('click', () => {
     }
 } );
 
-// startSurvey();
+
+showSchedule.addEventListener('click', showScheduleCalendar);
+skipSchedule.addEventListener('click', scheduleSkipped);
+
 submitElement.addEventListener('click', submitData);
