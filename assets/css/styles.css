@@ -117,7 +117,6 @@ input {
     width: 50%;
     margin: 0 0 50px 0;
     border: solid 5px #161e2f;
-    border-color: linear-gradient(270deg, rgba(32,157,92,1) 0%, rgba(72,92,134,1) 45%, rgba(22,30,47,1) 100%);
     border-radius: 5px;
 }
 
@@ -125,7 +124,6 @@ input {
     width: 33%;
     border: solid 5px #209d5c;
     transition: width 2s;
-    border-color: linear-gradient(270deg, rgba(32,157,92,1) 0%, rgba(72,92,134,1) 45%, rgba(22,30,47,1) 100%);
     transition-timing-function:cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 

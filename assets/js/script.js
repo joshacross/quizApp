@@ -230,6 +230,15 @@ let scheduleSkipped = () => {
     console.log('schedule skipped');
     eQ2.classList.add('hide');
     eQ3.classList.remove('hide');
+
+    /* 
+    Before I forget, I need to add in the Calendly scheduler to schedule a call with a loan officer
+    Now this might not be calendly needed, but it may be advantageous to incorporate all calendars - no. it's quite simple 
+    I just need to put in today but i would need to check the time
+    So I would need to figure out if there is a library that exists that has a scheduler... well Calendly does work
+    and it checks times... so let me create a new calendar that has time blocks and that only 4 people can schedule to this time block - 
+
+    */
     return;
 }
 
@@ -301,27 +310,27 @@ const questions = [
         question: 'How Much Would You Be Willing To Put Down As A Down Payment Towards A New Home?',
         answers: [
             {
-                text: '$0',
+                text: '0%',
                 correct: true,
                 value: 1
             },
             {
-                text: '$7,500',
+                text: '3%',
                 correct: true,
                 value: 3
             },
             {
-                text: '$12,500',
+                text: '5%',
                 correct: true,
                 value: 5
             },
             {
-                text: '$25,000',
+                text: '10%',
                 correct: true,
                 value: 10
             },
             {
-                text: 'Over $25,000',
+                text: '20%',
                 correct: true,
                 value: 20
             }

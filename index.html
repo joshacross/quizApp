@@ -16,33 +16,35 @@
   <body>
     <!-- Logo Asset -->
     <div id="start" class="container">
-      <img src="./assets/images/rentcalclogo.png" alt="" />
+      <img id="rentLogo" src="./assets/images/rentcalclogo.png" alt="" />
     <!-- Start Survey Form -->
       <div id="formSurveyPt1" class="container">
+        <!--A-->
         <form id='start-form' class="container">
-        <h1 id="getStarted">
-          View The Homes You Could Afford With The Rent That You Pay Per Month
-        </h1>
-        <br>
-        <h3>
-          Free and Complete Access
-        </h3>
-        <label for="email">Email Address:</label>
-        <br>
-        <input type="email" id="email" name="email" required placeholder="johndoe@gmail.com" />
-        <br>
-        <button id='start-btn' class="btn start-btn">Complete</button>
-        <p class="start-body">
-          By providing your email, you are consenting to allow us to provide you with helpful information regarding homeownership, rent calculator, and its affiliated services, including but not limited to home financing and current real estate .
+          <!--B-->
+          <h1 id="getStarted">
+            View The Homes You Could Afford With The Rent That You Pay Per Month
+          </h1>
           <br>
+          <h3>
+            Free and Complete Access
+          </h3>
+          <label for="email">Email Address:</label>
           <br>
-          We promise not to spam.
+          <input type="email" id="email" name="email" required placeholder="johndoe@gmail.com" />
           <br>
-          For more information view our <a href="https://rentcalculator.com/privacy" target="_parent">Privacy Policy</a>
-        </p>    
-        <hr>
-        <p>or</p>
-        <div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-layout="rounded" data-auto-logout-link="false" data-use-continue-as="false"></div>
+          <button id='start-btn' class="btn start-btn">Complete</button>
+          <p class="start-body">
+            By providing your email, you are consenting to allow us to provide you with helpful information regarding homeownership, rent calculator, and its affiliated services, including but not limited to home financing and current real estate .
+            <br>
+            <br>
+            We promise not to spam.
+            <br>
+            For more information view our <a href="https://rentcalculator.com/privacy" target="_parent">Privacy Policy</a>
+          </p>    
+          <hr>
+          <p>or</p>
+          <div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-layout="rounded" data-auto-logout-link="false" data-use-continue-as="false"></div>
         </form>
     <!-- End Start Survey Form-->
     <!-- Survey -->
@@ -85,16 +87,15 @@
         </div>
         <div id="eQ2" class="hide">
           <h3>
-            Thank you for your time in filling out our survey. We have added a complimentary financial advisor session with one of our trusted partners</h3>
-            <p>That is over a $100 value</p>
+            Thank you for your time in filling out our survey. We have added a complimentary mortgage advisor session with one of our trusted partners</h3>
             <br>
             <h3>
-              Would you like to schedule your complimentary consultation now? 
+              Would you like to schedule your 15-minute complimentary consultation now? 
             </h3>
             <!-- Calendly link widget begin -->
             <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
             <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-            <button id="showSchedule" style="text-decoration: none;" class="btn" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/jcross-prmi/15min'});return false;">Schedule time with me </button>
+            <button id="showSchedule" style="text-decoration: none;" class="btn" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/jcross-prmi/15min'});return false;">Yes, I would like to schedule a 15-minute phone consult </button>
             <!-- Calendly link widget end -->
             <button id="skipSchedule" class="btn" data="noSchedule">
               Maybe another time
@@ -102,7 +103,7 @@
           </h3>
         </div>
         <div id="eQ3" class="hide">
-          <h3> No Sweat! We have sent a discount code to your email. </h3>
+          <h3> No Sweat! We have sent more information to your email - <span id="showEmail"></span>. </h3>
           <p>When you're ready, simply go to <a href="https://rentcalculator.com/advisor target=_blank">https://rentcalculator.com/advisor</a> or give us a call at <a href="tel:16158226220">(615) 822-6220</a>. Click complete to finish</p>
           <button id="complete-btn" class="submit-btn btn" type="submit" value="submit">Complete</button>
         </div>
