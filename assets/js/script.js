@@ -19,6 +19,7 @@ const questionCounter = document.getElementById('questionCounter');
 const progressBar = document.getElementById('progressBar');
 
 // start Survey 
+const surveyContainer = document.getElementById('surveyContainer');
 const formSurveyPt1 = document.getElementById('formSurveyPt1');
 // survey Start button: 
 const startBtn = document.getElementById('start-btn');
@@ -32,32 +33,86 @@ const showSchedule = document.getElementById('showSchedule');
 const skipSchedule = document.getElementById('skipSchedule');
 const eQ3 = document.getElementById('eQ3');
 
+// show survey elements
+const showSurvey = document.getElementById('showSurvey');
+const formEl = document.getElementById('start-form');
+let emailSurvey, emailSurveyChild;
+
+// condition whether to show survey or not
+let surveyCompleted = Boolean;
+
 // set question index to 0
 let currentQuestionIndex = 0;
 // empty variable to hold selected answers as an object 
 let selectedAnswers = {};
 
-//validate email
-let validateEmail = (email) => {
-    var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
-  }
+let loadStorage = () => {
+    // get whether surveyCompleted is true or false from localStorage();
+    surveyCompleted = localStorage.getItem('survey');
+
+    if (surveyCompleted) {
+        console.log('surveySeen');
+            showSurvey.setAttribute('hidden', true);
+            console.log('localStorage', localStorage);
+        return;
+    } else {
+        console.log('showSurvey');
+        return;
+    }
+};
+
+formEl.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const emailEl = document.getElementById('email').value;
+    emailSurvey = document.getElementById('email-survey');
+    emailSurveyChild = emailSurvey.firstChild;
+    console.log('emailSurvey', emailSurvey);
+    console.log('emailSurveyChild', emailSurveyChild);
+    emailSurveyChild.setAttribute('data-trigger-element-class', 'surveySeen');
+
 
 // (A) START when user clicks the complete button
-startBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    const email = document.getElementById('email').value.trim();
-    validateEmail(email);
+// Validate Email
     if (validateEmail) {
-        localStorage.setItem('email', email);
-        selectedAnswers = { 'email': email };
-        startSurvey() 
-    } else {
-        alert('must enter a valid email address');
-        return;
-    };
-})
+        // add to local storage
+        localStorage.setItem('email', emailEl);
+        selectedAnswers = { 'email': emailEl };
+        
+        // submit data to update DB? 
+        async function sendForm (url='', data = {}) {
 
+            const response = await fetch(url, {
+                method: 'POST',
+                mode: 'cors',
+                cache: 'no-cache',
+                credentials: 'omit',
+                refererPolicy: 'strict-origin-when-cross-origin',
+                body: JSON.stringify(data)
+            });
+                return response.json();
+            }
+            sendForm('https://hooks.zapier.com/hooks/catch/9671423/b8up9vj/', emailEl)
+                .then(data => {
+                    console.log(data);
+                }).catch((err) => {
+                    console.log(err);
+                });
+                // set surveyCompleted to be true and push to local storage:
+                surveyCompleted = true;
+                localStorage.setItem('survey', true);
+                startSurvey();
+        } else {
+            alert('must enter a valid email address');
+            return;
+        }
+            // hideForm();
+});
+            
+// email validation util function
+let validateEmail = (emailEl) => {
+    var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(emailEl).toLowerCase());
+  }
 
 // also add a complete facebook message so it can pass to next screen (not there yet);
 // after user clicks hide elements and show hidden elements
@@ -65,6 +120,7 @@ startBtn.addEventListener('click', (e) => {
 
 let startSurvey = () => {
     startForm.classList.add('hide');
+    surveyContainer.classList.remove('hide');
     questionCounter.classList.remove('hide');
     progressBar.classList.remove('hide');
     questionContainerElement.classList.remove('hide');
@@ -100,6 +156,7 @@ let showQuestion = (question) => {
     // STEP 3a //
     console.log('showQuestion', question);
     questionElement.innerText = question.question;
+  	questionElement.setAttribute('style', 'text-align:center;')
     
     
     question.answers.forEach(answer => {
@@ -119,7 +176,7 @@ let resetState = () => {
     while (answerButtonsElement.firstChild) {
         answerButtonsElement.removeChild(answerButtonsElement.firstChild)
     }
-    nextButton.classList.add('opacity');
+    nextButton.classList.add('disabled');
 }
 
 let selectAnswer = (e) => {
@@ -130,7 +187,7 @@ let selectAnswer = (e) => {
     // define the text of the btn that was selected
     const selectedText = e.target.innerText;
 
-    nextButton.classList.remove('opacity');
+    nextButton.classList.remove('disabled');
         // when next btn is clicked, push question/answer key/value to selectedAnswers object
         nextButton.addEventListener('click', () => {
             selectedAnswers = {...selectedAnswers, [questionKey] : selectedText }
@@ -191,15 +248,19 @@ let submitData = (e) => {
 };
 
 let surveyConfirmation = () => {
+    eQ3.classList.add('hide');
+    const startContainer = document.getElementById('start');
     const continueBtn = document.createElement('button');
-    getStarted.textContent = 'Your Survey Has Been Sent!';
+  const surveySent = document.createElement('h1');
+    surveySent.textContent = 'Your Survey Has Been Sent!';
+  surveySent.setAttribute('style', 'text-align: center;');
     continueBtn.innerText = 'continue';
     continueBtn.classList.add('btn');
-    const controlsElement = document.getElementById('controls');
-    controlsElement.setAttribute('style', 'justify-content: center !important');
-    controlsElement.appendChild(continueBtn);
+    continueBtn.setAttribute('style', 'margin: 0 auto;');
+  	startContainer.appendChild(surveySent);
+    startContainer.appendChild(continueBtn);
     continueBtn.addEventListener('click', () => {
-        window.parent.location.href = 'https://rentcalculator.com/thank-you-confirmation/';
+        window.parent.location.href = 'https://rentcalculator.com/properties';
     });
 };
 
@@ -354,5 +415,9 @@ backButton.addEventListener('click', () => {
 
 showSchedule.addEventListener('click', showScheduleCalendar);
 skipSchedule.addEventListener('click', scheduleSkipped);
-
 submitElement.addEventListener('click', submitData);
+
+  // wait for all data to load set timeout for 5 seconds
+  setTimeout(() => {console.log('Data Has Loaded')}, 5000);
+  //then load local storage
+  loadStorage();

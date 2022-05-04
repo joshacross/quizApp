@@ -3,9 +3,8 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-body {
+#start {
     display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
     justify-content: center;
     align-content: center;
@@ -37,8 +36,13 @@ input {
     margin: 0 auto;
 }
 
+.textContainer {
+    margin: 0 auto;
+    max-width:700px;
+    text-align: center;
+}
+
 .start-body {
-    margin: 0 10%;
     padding: 3%;
     border-bottom:solid 1px #161e2f
 }
@@ -62,11 +66,13 @@ input {
     font-size: large;
     margin: 1%;
     width: 80%;
+    max-width: 600px;
+    text-decoration: none;
     background-color: #161e2f;
     border: 1px solid #161e2f;
     color: #fff;
     border-radius: 10px;
-    padding: 3% 3%;
+    padding: 40px 3%;
     transition: font-size .5s;
     transition-timing-function: ease-in-out;
 }
@@ -88,9 +94,11 @@ input {
     width: 50%;
     display: flex;
     justify-content: space-between;
+    align-content: center;
+    align-items: center;
 }
 
-.opacity {
+.disabled {
     opacity: 50%;
 }
 
