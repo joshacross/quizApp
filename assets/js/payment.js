@@ -3,8 +3,9 @@
 // loanAmount = (periodicInterestRate/100)/1-1+PeriodicInterestRate/100)-360)
 
 
-let calculation = (rent) => { 
-     ((0.0575/100)/(1-(1*(0.0575/100)-360)))/rent;
+let calculation = () => { 
+     let calc = ((0.0575/100)/(1-(1*(0.0575/100)-360)))/3000;
+     console.log(calc);
 }
 
-console.log(calculation (3000));
+calculation();
