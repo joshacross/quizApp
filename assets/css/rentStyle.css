@@ -28,7 +28,6 @@ body {
 }
 
 .container {
-    width: 80%;
     background-color: #209d5c;
     max-width: 80%;
     border-radius: 15px;
@@ -98,6 +97,8 @@ p {
 .vertical-flex {
     display: flex;
     flex-direction: column;
+    align-content: center;
+    justify-content: center;
 }
 
 .horizontal-flex {
