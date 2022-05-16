@@ -11,6 +11,9 @@ function returnRent(e) {
     const name = document.getElementById('et_pb_contact_name_0').value.trim();
     const phone = document.getElementById('et_pb_contact_phone_0').value.trim();
     const rent = document.getElementById('et_pb_contact_rent_0').value.trim();
+
+    if ((name) || (phone) || (rent)) {
+
     const pvResult = multiply(rent, 201.47766315152);
     
     let presentValue = document.createElement('input');
@@ -22,7 +25,6 @@ function returnRent(e) {
 
     let formData = {'userName': name, 'userPhone': phone, 'userRent': rent, 'userPV': presentValue.value};
 
-    alert('CONGRATULATIONS ' + formData.userName + '!!! 🎉 🎉 🎉  Paying $' + formData.userRent + ' in rent could allow you to purchase a house up to $' + formData.userPV);
 let setStorage = () => {
     localStorage.setItem('pv', presentValue.value);
     localStorage.setItem('name', name);
@@ -59,6 +61,10 @@ sendForm('https://hooks.zapier.com/hooks/catch/9671423/b8om3hn/', formData)
         console.log(err);
     });
     window.location.href = "https://rentcalculator.com/properties/?widget_id=2&kind=0&sf_unit_price=260&sf_min_price=0&sf_max_price="+formData.userPV;
+} else {
+    console.log('must enter a value');
+    return;
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function(){

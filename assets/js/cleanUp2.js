@@ -1,4 +1,3 @@
-
 //Controls
 const controls = document.getElementById('controls');
 const nextButton = document.getElementById('next-btn');
@@ -238,7 +237,7 @@ let submitData = (e) => {
             return response.json();
         }
       
-    sendForm('https://hooks.zapier.com/hooks/catch/9671423/b8up9vj/', selectedAnswers)
+    sendForm('https://hooks.zapier.com/hooks/catch/9671423/bkkreeh/', selectedAnswers)
         .then(data => {
             console.log(data);
         }).catch((err) => {
