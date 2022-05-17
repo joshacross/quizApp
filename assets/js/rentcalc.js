@@ -1,21 +1,31 @@
 
-
 const multiply = (num1, num2) => {
     return Math.floor(num1*num2);
 }
 
 let formData = [];
 
-let getRentPayment = async (e) => {
+let getRentPayment = (e) => {
     e.preventDefault();
     const rentPayment = document.getElementById('rent').value.trim();
     console.log('rentPayment', rentPayment);
 
-    if (!rentPayment) {
-       await console.log ('rentPayment is null');
-    } else {
-        console.log('rentPayment is not null')
+    let getMortgageRates = async () => {
+        console.log('getMortgageRates initiated');
+        await fetch ('https://mortgageapi.zillow.com/getCurrentRates?partnerId=RD-CZMBMCZ&queries.1.propertyBucket.location.stateAbbreviation=TN&queries.1.propertyBucket.propertyValue=500000&queries.1.propertyBucket.loanAmount=400000')
+        .then(response => response.json())
+        .then(data => console.log(data)
+        .catch(err => console.log(err)))
     }
+
+    if (!rentPayment) {
+         console.log('rentPayment is not null');
+    } else {
+         console.log('rentPayment is not null')
+         getMortgageRates();
+    }
+
+
 };
 
 // add eventListener to form button
