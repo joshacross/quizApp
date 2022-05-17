@@ -1,10 +1,16 @@
+
+// for event listener on submit
 const formDataElement = document.getElementById('form');
+
 const multiply = (num1, num2) => {
     return Math.floor(num1*num2);
 }
 
-let formData = [];
+let formData = {};
 
+////////////////////////
+// Fills out form /////
+//////////////////////
 let getRentPayment = (e) => {
     e.preventDefault();
     let rent = document.getElementById('rent').value.trim();
@@ -13,36 +19,13 @@ let getRentPayment = (e) => {
         alert('must enter a rent payment');
         return;
     } else {
-         console.log('rentPayment is not null')
-         getMortgageRates(rent);
+        let rentPaymentObj = {'rent': rent};
+         console.log('rentPayment is not null');
+         formData = { ...formData, rentPaymentObj }
     }
-};
-
-let getRate = (rateObj, monthlyRent) => {
-    console.log('monthlyRent', monthlyRent);
-    let rateData = rateObj.rates[1].rate;
-    console.log('rateData', rateData);
-    futureValue(rateData, monthlyRent);
-
-//     output = {};
-
-//     for (let i = 0; i < rateData.length; i++) {
-// 	    output ["myOutput"+i] = JSON.stringify(obj[i]);
-//     }
-//     console.log(rateData);
-//   return rateData;
-};
-
-let futureValue = (rate, rent) => {
-    console.log('rent', rent);
-    console.log(rate);
-
-
-    let fV = (rentPayment*((1+rate)^360));
-    console.log('futureVale', fV);
-
-    return Math.floor(fV);
-}
+         console.log('formData', formData);
+         getMortgageRates();
+    };
 
 // Now userData is the parsed result
 let getMortgageRates = async () => {
@@ -53,12 +36,37 @@ let getMortgageRates = async () => {
         if (response.ok) {
             response.json()
             .then(data => 
-                getRate(data)
-            )
-            .catch(err => 
+                rateObj = { 'rate': data.rates[1].rate }
+            ).then(rateObj =>
+                formData = { ...formData, rateObj }
+            ).then(formData =>
+                console.log(formData)
+            ).catch(err => 
                 console.log(err)
             )
-        }})};
+        }
+    })
+};
+
+// let getRate = (rateObj) => {
+//     let rateData = rateObj.rates[1].rate;
+//     let rateObj = { 'rate': rateData };
+    
+//     formData = {...formData, rateObj };
+    
+//     futureValue(rateData, monthlyRent);
+// };
+
+// let futureValue = (rate, rent) => {
+//     console.log('rent', rent);
+//     console.log(rate);
+
+
+//     let fV = (rentPayment*((1+rate)^360));
+//     console.log('futureVale', fV);
+
+//     return Math.floor(fV);
+// };
         
 // add eventListener to form button
 
