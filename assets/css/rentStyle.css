@@ -35,6 +35,16 @@ body {
     box-shadow: 0 0 10px 2px;
 }
 
+.col {
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width:fit-content;
+    align-content: center;
+    align-items: center;
+}
+
 img {
     width: 100px;
 }

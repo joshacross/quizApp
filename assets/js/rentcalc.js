@@ -1,3 +1,5 @@
+// get Element to insert form results into
+const insertFormResults = document.getElementById('insertFormResults');
 
 // for event listener on submit
 const formDataElement = document.getElementById('form');
@@ -62,9 +64,6 @@ let getMortgageRates = async () => {
 };
 
 let calculatePrinciple = (pmt, i) => {
-    console.log(pmt);
-    console.log(i);
-    console.log(n);
     let compoundedMonthlyInterest = ((i*.01)/12);
     let paymentLessTaxInsurance = (pmt-375);
 
@@ -82,9 +81,57 @@ let calculatePrinciple = (pmt, i) => {
     
     console.log('principle', (1/principle));
 
-    return Math.floor(principle);
+    let roundedPrinciple = Math.floor((1/principle));
+
+    let principleObj = { 'principle': roundedPrinciple };
+    formData = { ...formData, principleObj };
+    saveToLocalStorage();
+    updateForm();
+    return;
 };
         
+let saveToLocalStorage = () => {
+    console.log(formData);
+    localStorage.setItem('rentPayment', (formData.rentPaymentObj.rent));
+    localStorage.setItem('numberOfPeriods', n);
+    localStorage.setItem('interestRate', (formData.rateObj.rate));
+    localStorage.setItem('principle', (formData.principleObj.principle));
+};
+
+let updateForm = () => {
+    const principleElLabel = document.createElement('p');
+    principleElLabel.textContent = 'Congratulations! Your Converted Max Purchase Price Is:';
+    const principleEl = document.createElement('input');
+    principleEl.setAttribute('type', 'text');
+    principleEl.setAttribute('style', 'margin: 0 auto;')
+    principleEl.value = '$' + formData.principleObj.principle;
+    insertFormResults.appendChild(principleElLabel);
+    insertFormResults.appendChild(principleEl);
+
+
+    
+
+//     // declare form controls:
+//     console.log('formData principle', formData.principleObj.principle);
+//     let principleValue = formData.principleObj.principle;
+//     console.log('principleAmount', principleAmount);
+// principleAmount.value = principleValue;
+// const rentPayment = document.getElementById('rent-payment')
+// const currentRate = document.getElementById('current-rate')
+// const numberOfPayment = document.getElementById('number-of-payments')
+// const downPayment = document.getElementById('down-payment')
+// const taxInsurance = document.getElementById('tax-insurance')
+
+// principleAmount.setAttribute('value', formData.principleObj.principle);
+    // principleAmount.value = "$" + formData.principleObj.principle;
+    //  principleAmount
+    //  rentPayment
+    //  currentRate
+    //  numberOfPayment
+    //  downPayment
+    //  taxInsurance
+
+}
 // add eventListener to form button
 
 formDataElement.addEventListener('submit', getRentPayment);

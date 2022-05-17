@@ -26,7 +26,7 @@
             </div> -->
             <div class="vertical-flex">
                 <label style="text-align: center;" for="rent">Enter Your Rent Here:</label>
-                <input type="number" id="rent" name="rent" placeholder="$2,500" data=""/>
+                <input type="number" id="rent" name="rent" placeholder="$2,500" data="" required/>
                 <div style="margin: 10px auto;">
                 <button
                 id="submit-btn"
@@ -41,9 +41,35 @@
             </div>
 
         </div>
-
-
-
+        <div><br><hr></div>
+        <div id="insertFormResults" class="col"></div>
+          <!-- <div class="col">
+            <p>Principle: </p>
+            <input type="text" placeholder="$" value="" id="priciple-amount" disabled/>
+          </div>
+          <div class="col">
+            <p>Rent Payment: </p><input type="text"  value=""  placeholder="$" id="rent-payment" disabled />
+          </div>
+          <div class="col">
+            <p>Current Rate: </p><input type="text"  value=""  placeholder="%" id="current-rate" disabled/>
+          </div>
+          <div class="col">
+            <p>Term: </p><input type="text" placeholder="#"  value=""  id="number-of-payments" disabled/>
+          </div>
+          <div class="col">
+            <p>Down-Payment: </p><input type="text"  value=""  placeholder="$" id="down-payment" disabled/>
+          </div>
+          <div class="col">
+            <p>Tax & Insurance: </p><input type="text"   value="" placeholder="$" id="tax-insurance" disabled/>
+          </div>
+        </div> -->
+        <div style="max-width: 30vw; margin: 0 auto">
+          <br><br>
+          <p style="font-size:x-small;">
+            *The maximum principle value of $____ is based on a borrowers average annual household income of $ + income + ", with no outstanding monthly debts at a ____ interest ___apr with an average Tennessee State tax and insurance of ____." 
+              Some products and services may not be available in all states. Credit and collateral are subject to approval. Terms and conditions apply. Programs, rates, terms and conditions are subject to change and are subject to borrower qualification. This is not a commitment to lend. The content in this website has not been approved, reviewed, sponsored or endorsed by any department or goverment ageny. Rent Calculator in association with Nashville Area Homes are not financial lenders or associated with any financial entity. See <a href="*/privacy-policy">Privacy Policy</a> for more details.</p>
+          </p>
+        </div>
       </form>
     </div>
 
