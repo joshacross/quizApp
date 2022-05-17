@@ -6,7 +6,20 @@ const multiply = (num1, num2) => {
     return Math.floor(num1*num2);
 }
 
+
+//variable declarations
 let formData = {};
+// Principle Formula = 
+    // p = monthly rent payment
+    pmt = Number;
+    // n = # of payments
+    n = (12*30);
+    // i = current interest rate (bank rate)
+    i = Number;
+    // pV = principle 
+    principle = Number;
+
+
 
 ////////////////////////
 // Fills out form /////
@@ -21,7 +34,7 @@ let getRentPayment = (e) => {
     } else {
         let rentPaymentObj = {'rent': rent};
          console.log('rentPayment is not null');
-         formData = { ...formData, rentPaymentObj }
+         formData = { rentPaymentObj }
     }
          console.log('formData', formData);
          getMortgageRates();
@@ -40,7 +53,7 @@ let getMortgageRates = async () => {
             ).then(rateObj =>
                 formData = { ...formData, rateObj }
             ).then(formData =>
-                console.log(formData)
+                calculatePrinciple(formData.rentPaymentObj.rent, formData.rateObj.rate)
             ).catch(err => 
                 console.log(err)
             )
@@ -48,25 +61,29 @@ let getMortgageRates = async () => {
     })
 };
 
-// let getRate = (rateObj) => {
-//     let rateData = rateObj.rates[1].rate;
-//     let rateObj = { 'rate': rateData };
+let calculatePrinciple = (pmt, i) => {
+    console.log(pmt);
+    console.log(i);
+    console.log(n);
+    let compoundedMonthlyInterest = ((i*.01)/12);
+    let paymentLessTaxInsurance = (pmt-375);
+
+    principle = ((((compoundedMonthlyInterest)*((1+compoundedMonthlyInterest)^n))/((1+(compoundedMonthlyInterest^n))-1))/(paymentLessTaxInsurance));
+
+    // let pV = (((paymentLessTaxInsurance)*((1+compoundedMonthlyInterest)^(n-1)))/((compoundedMonthlyInterest*((1+compoundedMonthlyInterest)^n))));
+    /*
+        Principle Formula = 
+            m = monthly mortgage payment
+            r = monthly rent payment
+            n = # of payments
+            i = current interest rate (bank rate)
+            P = principle 
+    */
     
-//     formData = {...formData, rateObj };
-    
-//     futureValue(rateData, monthlyRent);
-// };
+    console.log('principle', (1/principle));
 
-// let futureValue = (rate, rent) => {
-//     console.log('rent', rent);
-//     console.log(rate);
-
-
-//     let fV = (rentPayment*((1+rate)^360));
-//     console.log('futureVale', fV);
-
-//     return Math.floor(fV);
-// };
+    return Math.floor(principle);
+};
         
 // add eventListener to form button
 
