@@ -20,6 +20,25 @@ let getRentPayment = (e) => {
 
 };
 
+let displayPV = (rateObj) => {
+    let rateData = null;
+
+    try {
+        rateData = JSON.parse(rateObj.rates);
+    } catch (e) {
+        rateData = rateObj.rates;
+    }
+
+    output = {};
+
+    for (let i = 0; i < rateData.length; i++) {
+	    output ["myOutput"+i] = JSON.stringify(obj[i]);
+    }
+    console.log(rateData);
+  return rateData;
+};
+
+// Now userData is the parsed result
 let getMortgageRates = async () => {
     console.log('getMortgageRates initiated');
     let apiUrl = 'https://mortgageapi.zillow.com/getCurrentRates?partnerId=RD-CZMBMCZ&queries.1.propertyBucket.location.stateAbbreviation=TN&queries.1.propertyBucket.propertyValue=500000&queries.1.propertyBucket.loanAmount=400000'
@@ -27,14 +46,14 @@ let getMortgageRates = async () => {
     .then(response => {
         if (response.ok) {
             response.json()
-            .then(data => console.log(data))
-            .catch(err => console.log(err))
-        } else {
-            console.log('error', err);
-        }
-    })
-};
-
+            .then(data => 
+                displayPV(data)
+            )
+            .catch(err => 
+                console.log(err)
+            )
+        }})};
+        
 // add eventListener to form button
 
 formDataElement.addEventListener('submit', getRentPayment);
