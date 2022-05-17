@@ -7,36 +7,42 @@ let formData = [];
 
 let getRentPayment = (e) => {
     e.preventDefault();
-    const rentPayment = document.getElementById('rent').value.trim();
-    console.log('rentPayment', rentPayment);
+    let rent = document.getElementById('rent').value.trim();
 
-    if (!rentPayment) {
-         console.log('rentPayment is not null');
+    if (!rent) {
+        alert('must enter a rent payment');
+        return;
     } else {
          console.log('rentPayment is not null')
-         getMortgageRates();
+         getMortgageRates(rent);
     }
-
-
 };
 
-let displayPV = (rateObj) => {
-    let rateData = null;
+let getRate = (rateObj, monthlyRent) => {
+    console.log('monthlyRent', monthlyRent);
+    let rateData = rateObj.rates[1].rate;
+    console.log('rateData', rateData);
+    futureValue(rateData, monthlyRent);
 
-    try {
-        rateData = JSON.parse(rateObj.rates);
-    } catch (e) {
-        rateData = rateObj.rates;
-    }
+//     output = {};
 
-    output = {};
-
-    for (let i = 0; i < rateData.length; i++) {
-	    output ["myOutput"+i] = JSON.stringify(obj[i]);
-    }
-    console.log(rateData);
-  return rateData;
+//     for (let i = 0; i < rateData.length; i++) {
+// 	    output ["myOutput"+i] = JSON.stringify(obj[i]);
+//     }
+//     console.log(rateData);
+//   return rateData;
 };
+
+let futureValue = (rate, rent) => {
+    console.log('rent', rent);
+    console.log(rate);
+
+
+    let fV = (rentPayment*((1+rate)^360));
+    console.log('futureVale', fV);
+
+    return Math.floor(fV);
+}
 
 // Now userData is the parsed result
 let getMortgageRates = async () => {
@@ -47,7 +53,7 @@ let getMortgageRates = async () => {
         if (response.ok) {
             response.json()
             .then(data => 
-                displayPV(data)
+                getRate(data)
             )
             .catch(err => 
                 console.log(err)
