@@ -29,7 +29,6 @@ let formData = {};
     let n = (months*years);
 
 
-
     // i = current interest rate (bank rate)
     let interest = Number;
     // pV = principle 
@@ -48,8 +47,11 @@ let getRentPayment = (e) => {
         return;
     } else {
         let rentPaymentObj = {'rent': rent};
+        let incomeRate = .6
+        let income = (rent/incomeRate);
+        let incomeObj = { 'income': income };
          console.log('rentPayment is not null');
-         formData = { rentPaymentObj }
+         formData = { rentPaymentObj, incomeObj };
     }
          console.log('formData', formData);
          getMortgageRates();
@@ -78,10 +80,10 @@ let getMortgageRates = async () => {
 
 let calculatePrinciple = (pmt, interest) => {
     let compoundedMonthlyInterest = ((interest*.01)/12);
-    let paymentLessTaxInsurance = (pmt-375);
+    let taxAndInsurance = 375;
+    let paymentLessTaxInsurance = (pmt-taxAndInsurance);
 
     principle = ((((compoundedMonthlyInterest)*((1+compoundedMonthlyInterest)^n))/((1+(compoundedMonthlyInterest^n))-1))/(paymentLessTaxInsurance));
-
     // let pV = (((paymentLessTaxInsurance)*((1+compoundedMonthlyInterest)^(n-1)))/((compoundedMonthlyInterest*((1+compoundedMonthlyInterest)^n))));
     /*
         Principle Formula = 
@@ -97,7 +99,10 @@ let calculatePrinciple = (pmt, interest) => {
     let roundedPrinciple = Math.floor((1/principle));
 
     let principleObj = { 'principle': roundedPrinciple };
-    formData = { ...formData, principleObj };
+    let numberOfPeriodsObj = { 'numberOfPeriods': n }
+
+    formData = { ...formData, principleObj, numberOfPeriodsObj };
+
     saveToLocalStorage();
     updateForm();
     return;
@@ -112,27 +117,81 @@ let saveToLocalStorage = () => {
 };
 
 let updateForm = () => {
-    // label and input for rent
-    const rentPaymentLabel = document.createElement('p');
-    const rentPaymentEl = document.createElement('p');
-    // label and input for periods
-    const numberOfPeriodsLabel = document.createElement('p');
-    const numberOfPeriodsEl = document.createElement('p');
-    // label and input for rate
-    const interestRateLabel = document.createElement('p');
-    const interestRateEl = document.createElement('p');
-    // label and input for principle
-    const rentPaymentLabel = document.createElement('p');
-    const principleLabel = document.createElement('p');
-
-    principleElLabel.textContent = 'Congratulations! Your Converted Max Purchase Price Is:';
     const principleEl = document.createElement('input');
+    const principleElLabel = document.createElement('p');
+    principleElLabel.textContent = 'Congratulations! Your Converted Max Purchase Price Is:';
     principleEl.setAttribute('type', 'text');
     principleEl.setAttribute('style', 'margin: 0 auto;')
+    principleEl.setAttribute('id', 'principle')
     principleEl.value = '$' + formData.principleObj.principle;
     insertFormResults.appendChild(principleElLabel);
     insertFormResults.appendChild(principleEl);
 
+    const numberOfPeriodsEl = document.createElement('input');
+    const numberOfPeriodsLabel = document.createElement('p');
+    numberOfPeriodsLabel.textContent = 'Number of Periods:'
+    numberOfPeriodsEl.setAttribute('type', 'text');
+    numberOfPeriodsEl.setAttribute('style', 'margin: 0 auto;');
+    numberOfPeriodsEl.setAttribute('id', 'numberOfPeriods');
+    numberOfPeriodsEl.value = 'n = ' + formData.numberOfPeriodsObj.numberOfPeriods;
+    insertFormResults.appendChild(numberOfPeriodsLabel);
+    insertFormResults.appendChild(numberOfPeriodsEl);
+
+    const interestRateEl = document.createElement('input');
+    const interestRateLabel = document.createElement('p');
+    interestRateLabel.textContent = '*Lowest Interest Rate:'
+    interestRateEl.setAttribute('type', 'text');
+    interestRateEl.setAttribute('style', 'margin: 0 auto;');
+    interestRateEl.setAttribute('id', 'interestRate');
+    interestRateEl.value = formData.rateObj.rate + '%'
+    insertFormResults.appendChild(interestRateLabel);
+    insertFormResults.appendChild(interestRateEl);
+
+    const rentPaymentEl = document.createElement('input');
+    const rentPaymentLabel = document.createElement('p');
+    rentPaymentLabel.textContent = 'RentPayment'
+    rentPaymentEl.setAttribute('type', 'text');
+    rentPaymentEl.setAttribute('style', 'margin: 0 auto;');
+    rentPaymentEl.setAttribute('id', 'rentPayment');
+    rentPaymentEl.value = '$' + formData.rentPaymentObj.rent;
+    insertFormResults.appendChild(rentPaymentLabel);
+    insertFormResults.appendChild(rentPaymentEl);
+
+    const incomeEl = document.createElement('input');
+    const incomeLabel = document.createElement('p');
+    incomeLabel.textContent = 'Income'
+    incomeEl.setAttribute('type', 'range');
+    incomeEl.setAttribute('min', .01);
+    incomeEl.setAttribute('max', 1);
+    incomeEl.setAttribute('value', .60);
+    incomeEl.setAttribute('style', 'margin: 0 auto;');
+    incomeEl.setAttribute('id', 'rentPayment');
+    incomeEl.value = '$' + formData.incomeObj.income;
+    insertFormResults.appendChild(incomeLabel);
+    insertFormResults.appendChild(incomeEl);
+
+    //Disclaimer - Privacy
+    const privacyPolicyContainer = document.getElementById('Disclaimer');
+    const disclaimerEl = document.createElement('p');
+    disclaimerEl.setAttribute('style', 'font-size:x-small');
+    const disclaimerLabel = document.createElement('p');
+    disclaimerLabel.textContent = '*Disclaimer';
+    disclaimerLabel.setAttribute('style', 'font-size:x-small');
+    const privacyPolicyURL = document.createElement('a');
+    privacyPolicyURL.setAttribute('href', './privacy-policy');
+    privacyPolicyURL.textContent = 'Privacy Policy';
+    disclaimerEl.textContent = 'The maximum principle value of $____ is based on a borrowers ' +
+    'average annual household income of $' + formData.incomeObj.income + 'with no outstanding monthly debts at a ' + formData.rateObj.rate + '% interest - apr with an average Tennessee State tax and insurance of $' + taxAndInsurance +  '.'
+    + 'Some products and services may not be available in all states.'
+    + 'Credit and collateral are subject to approval.'
+    + 'Terms and conditions apply. Programs, rates, terms and conditions are subject to change and are subject to borrower qualification.'
+    + 'This is not a commitment to lend. The content in this website has not been approved, reviewed, sponsored or endorsed by any department or goverment ageny.'
+    + 'Rent Calculator in association with Nashville Area Homes are not financial lenders or associated with any financial entity.' 
+    + 'See ' + privacyPolicyURL + ' for more details.';
+    privacyPolicyContainer.appendChild(disclaimerLabel);
+    privacyPolicyContainer.appendChild(disclaimerEl);
+
+}
 /*
 Issue: 
 When document loads, load local storage.
@@ -202,7 +261,7 @@ Grant access to extra and have an entire website of stuff ready
     //  downPayment
     //  taxInsurance
 
-}
+
 // add eventListener to form button
 
 formDataElement.addEventListener('submit', getRentPayment);
