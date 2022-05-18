@@ -1,3 +1,6 @@
+//Rent Calculator Input and Calculate button
+const rentCalc = document.getElementById('rentCalc');
+
 // get Element to insert form results into
 const insertFormResults = document.getElementById('insertFormResults');
 
@@ -41,6 +44,7 @@ let formData = {};
 //////////////////////
 let getRentPayment = (e) => {
     e.preventDefault();
+    rentCalc.setAttribute('hidden', true);
     let rent = document.getElementById('rent').value.trim();
 
     if (!rent) {
@@ -69,7 +73,7 @@ let getMortgageRates = async () => {
         if (response.ok) {
             response.json()
             .then(data => 
-                rateObj = { 'rate': data.rates[1].rate }
+                rateObj = { 'rate': data.rates[1].rate, 'apr': data.rates[1].apr }
             ).then(rateObj =>
                 formData = { ...formData, rateObj }
             ).then(formData =>
@@ -228,14 +232,14 @@ let updateForm = () => {
     disclaimerLabel.setAttribute('style', 'font-size:x-small');
     const privacyPolicyURL = document.createElement('a');
     privacyPolicyURL.setAttribute('href', './privacy-policy');
-    privacyPolicyURL.textContent = 'Privacy Policy';
+    privacyPolicyURL.innerText = 'Privacy Policy';
     disclaimerEl.textContent = 'The maximum principle value of $' + formData.principleObj.principle + ' is based on a borrowers ' +
-    'combined average annual household income of $' + formData.incomeObj.income + 'with no outstanding monthly debts at a ' + formData.rateObj.rate + '% interest - apr with an average Tennessee State tax and insurance of $' + taxAndInsurance +  '.'
+    'combined average annual household income of $' + formData.incomeObj.income + ' per year, with no outstanding monthly debts, at a ' + formData.rateObj.rate + '% interest, ' + formData.rateObj.apr + '% apr, and an average Tennessee State tax and insurance of $' + taxAndInsurance +  '. '
     + 'Some products and services may not be available in all states.'
-    + 'Credit and collateral are subject to approval.'
-    + 'Terms and conditions apply. Programs, rates, terms and conditions are subject to change and are subject to borrower qualification.'
-    + 'This is not a commitment to lend. The content in this website has not been approved, reviewed, sponsored or endorsed by any department or goverment ageny.'
-    + 'Rent Calculator in association with Nashville Area Homes are not financial lenders or associated with any financial entity.' 
+    + 'Credit and collateral are subject to approval. '
+    + 'Terms and conditions apply. Programs, rates, terms and conditions are subject to change and are subject to borrower qualification. '
+    + 'This is not a commitment to lend. The content in this website has not been approved, reviewed, sponsored or endorsed by any department or goverment ageny. '
+    + 'Rent Calculator in association with Nashville Area Homes are not financial lenders or associated with any financial entity. ' 
     + 'See ' + privacyPolicyURL + ' for more details.';
     privacyPolicyContainer.appendChild(disclaimerLabel);
     privacyPolicyContainer.appendChild(disclaimerEl);
