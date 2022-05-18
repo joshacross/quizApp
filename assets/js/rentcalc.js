@@ -31,6 +31,7 @@ let formData = {};
 
     // i = current interest rate (bank rate)
     let interest = Number;
+    let taxAndInsurance = 375;
     // pV = principle 
     principle = Number;
 
@@ -47,8 +48,10 @@ let getRentPayment = (e) => {
         return;
     } else {
         let rentPaymentObj = {'rent': rent};
-        let incomeRate = .6
-        let income = (rent/incomeRate);
+        let incomeRate = 40;
+        let incomePercent = (incomeRate/1000);
+        let income = (rent/incomePercent);
+        console.log(income);
         let incomeObj = { 'income': income };
          console.log('rentPayment is not null');
          formData = { rentPaymentObj, incomeObj };
@@ -80,7 +83,6 @@ let getMortgageRates = async () => {
 
 let calculatePrinciple = (pmt, interest) => {
     let compoundedMonthlyInterest = ((interest*.01)/12);
-    let taxAndInsurance = 375;
     let paymentLessTaxInsurance = (pmt-taxAndInsurance);
 
     principle = ((((compoundedMonthlyInterest)*((1+compoundedMonthlyInterest)^n))/((1+(compoundedMonthlyInterest^n))-1))/(paymentLessTaxInsurance));
@@ -117,71 +119,118 @@ let saveToLocalStorage = () => {
 };
 
 let updateForm = () => {
+
+    const resultsHeaderEl = document.createElement('h1');
+    resultsHeaderEl.textContent = 'Congratulations!'
+    insertFormResults.appendChild(resultsHeaderEl)
+    // create a column div container with responsive design:
+    const principleContainerEl = document.createElement('div');
+    principleContainerEl.classList.add('col');
+    principleContainerEl.setAttribute('id', 'principleContainer');
+    insertFormResults.appendChild(principleContainerEl);
+
+
     const principleEl = document.createElement('input');
+    principleEl.setAttribute('style', 'display: block');
     const principleElLabel = document.createElement('p');
-    principleElLabel.textContent = 'Congratulations! Your Converted Max Purchase Price Is:';
+    principleElLabel.textContent = 'Your Converted Max Purchase Price Is:  ';
     principleEl.setAttribute('type', 'text');
     principleEl.setAttribute('style', 'margin: 0 auto;')
     principleEl.setAttribute('id', 'principle')
     principleEl.value = '$' + formData.principleObj.principle;
-    insertFormResults.appendChild(principleElLabel);
-    insertFormResults.appendChild(principleEl);
+    principleContainerEl.appendChild(principleElLabel);
+    principleContainerEl.appendChild(principleEl);
+
+        // create a column div container with responsive design:
+        const periodsContainerEl = document.createElement('div');
+        periodsContainerEl.classList.add('col');
+        periodsContainerEl.setAttribute('id', 'periodContainer');
+        insertFormResults.appendChild(periodsContainerEl);
+    
 
     const numberOfPeriodsEl = document.createElement('input');
     const numberOfPeriodsLabel = document.createElement('p');
-    numberOfPeriodsLabel.textContent = 'Number of Periods:'
+    numberOfPeriodsLabel.textContent = 'Number of Periods:  '
     numberOfPeriodsEl.setAttribute('type', 'text');
     numberOfPeriodsEl.setAttribute('style', 'margin: 0 auto;');
     numberOfPeriodsEl.setAttribute('id', 'numberOfPeriods');
     numberOfPeriodsEl.value = 'n = ' + formData.numberOfPeriodsObj.numberOfPeriods;
-    insertFormResults.appendChild(numberOfPeriodsLabel);
-    insertFormResults.appendChild(numberOfPeriodsEl);
+    periodsContainerEl.appendChild(numberOfPeriodsLabel);
+    periodsContainerEl.appendChild(numberOfPeriodsEl);
+
+        // create a column div container with responsive design:
+        const interestRateContainerEl = document.createElement('div');
+        interestRateContainerEl.classList.add('col');
+        interestRateContainerEl.setAttribute('id', 'interestRateContainer');
+        insertFormResults.appendChild(interestRateContainerEl);
+    
+
 
     const interestRateEl = document.createElement('input');
     const interestRateLabel = document.createElement('p');
-    interestRateLabel.textContent = '*Lowest Interest Rate:'
+    interestRateLabel.textContent = '*Lowest Interest Rate:  '
     interestRateEl.setAttribute('type', 'text');
     interestRateEl.setAttribute('style', 'margin: 0 auto;');
     interestRateEl.setAttribute('id', 'interestRate');
     interestRateEl.value = formData.rateObj.rate + '%'
-    insertFormResults.appendChild(interestRateLabel);
-    insertFormResults.appendChild(interestRateEl);
+    interestRateContainerEl.appendChild(interestRateLabel);
+    interestRateContainerEl.appendChild(interestRateEl);
+
+        // create a column div container with responsive design:
+        const rentPaymentContainerEl = document.createElement('div');
+        rentPaymentContainerEl.classList.add('col');
+        rentPaymentContainerEl.setAttribute('id', 'rentContainer');
+        insertFormResults.appendChild(rentPaymentContainerEl);
+    
+
 
     const rentPaymentEl = document.createElement('input');
     const rentPaymentLabel = document.createElement('p');
-    rentPaymentLabel.textContent = 'RentPayment'
+    rentPaymentLabel.textContent = 'Rent Payment:  '
     rentPaymentEl.setAttribute('type', 'text');
     rentPaymentEl.setAttribute('style', 'margin: 0 auto;');
     rentPaymentEl.setAttribute('id', 'rentPayment');
     rentPaymentEl.value = '$' + formData.rentPaymentObj.rent;
-    insertFormResults.appendChild(rentPaymentLabel);
-    insertFormResults.appendChild(rentPaymentEl);
+    rentPaymentContainerEl.appendChild(rentPaymentLabel);
+    rentPaymentContainerEl.appendChild(rentPaymentEl);
 
-    const incomeEl = document.createElement('input');
+        // create a column div container with responsive design:
+        const incomeContainerEl = document.createElement('div');
+        incomeContainerEl.setAttribute('style', 'display:flex; flex-wrap: wrap; flex-direction: column; justify-content: center;')
+        incomeContainerEl.setAttribute('id', 'incomeContainer');
+        insertFormResults.appendChild(incomeContainerEl);
+    
+
+
     const incomeLabel = document.createElement('p');
-    incomeLabel.textContent = 'Income'
+    const incomeDisplayEl = document.createElement('p');
+    const incomeEl = document.createElement('input');
+    incomeLabel.textContent = 'Income: $'
+    incomeDisplayEl.textContent = formData.incomeObj.income;
     incomeEl.setAttribute('type', 'range');
-    incomeEl.setAttribute('min', .01);
-    incomeEl.setAttribute('max', 1);
-    incomeEl.setAttribute('value', .60);
+    incomeEl.setAttribute('min', 1);
+    incomeEl.setAttribute('max', 100);
+    incomeEl.setAttribute('value', 40);
     incomeEl.setAttribute('style', 'margin: 0 auto;');
     incomeEl.setAttribute('id', 'rentPayment');
-    incomeEl.value = '$' + formData.incomeObj.income;
+    incomeEl.value = '$' + (formData.incomeObj.income * 100);
+    insertFormResults.appendChild(incomeContainerEl);
     insertFormResults.appendChild(incomeLabel);
+    insertFormResults.appendChild(incomeDisplayEl);
     insertFormResults.appendChild(incomeEl);
 
     //Disclaimer - Privacy
     const privacyPolicyContainer = document.getElementById('Disclaimer');
     const disclaimerEl = document.createElement('p');
-    disclaimerEl.setAttribute('style', 'font-size:x-small');
+    disclaimerEl.setAttribute('style', 'font-size:x-small;');
     const disclaimerLabel = document.createElement('p');
     disclaimerLabel.textContent = '*Disclaimer';
     disclaimerLabel.setAttribute('style', 'font-size:x-small');
     const privacyPolicyURL = document.createElement('a');
     privacyPolicyURL.setAttribute('href', './privacy-policy');
     privacyPolicyURL.textContent = 'Privacy Policy';
-    disclaimerEl.textContent = 'The maximum principle value of $____ is based on a borrowers ' +
-    'average annual household income of $' + formData.incomeObj.income + 'with no outstanding monthly debts at a ' + formData.rateObj.rate + '% interest - apr with an average Tennessee State tax and insurance of $' + taxAndInsurance +  '.'
+    disclaimerEl.textContent = 'The maximum principle value of $' + formData.principleObj.principle + ' is based on a borrowers ' +
+    'combined average annual household income of $' + formData.incomeObj.income + 'with no outstanding monthly debts at a ' + formData.rateObj.rate + '% interest - apr with an average Tennessee State tax and insurance of $' + taxAndInsurance +  '.'
     + 'Some products and services may not be available in all states.'
     + 'Credit and collateral are subject to approval.'
     + 'Terms and conditions apply. Programs, rates, terms and conditions are subject to change and are subject to borrower qualification.'

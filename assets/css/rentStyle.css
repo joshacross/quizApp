@@ -38,11 +38,11 @@ body {
 .col {
     text-align: center;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     flex-wrap: wrap;
     max-width:fit-content;
-    align-content: center;
-    align-items: center;
+    margin: 0 auto;
 }
 
 img {
