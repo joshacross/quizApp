@@ -10,17 +10,30 @@ const multiply = (num1, num2) => {
 
 
 //variable declarations
+
+// formData = empty object to make local variables global
 let formData = {};
-// Principle Formula = 
+
+// Principle Formula based on Form Results = 
     // p = monthly rent payment
-    pmt = Number;
-    // n = # of payments
-    n = (12*30);
+    let pmt = Number;
+    
+    // frequency = how many months does interest compound
+    let months = 12;
+    let monthsObj = { 'months': months };
+
+    // time = how many years
+    let years = 30;
+    yearsObj = { 'years': years };
+
+    let n = (months*years);
+
+
+
     // i = current interest rate (bank rate)
-    i = Number;
+    let interest = Number;
     // pV = principle 
     principle = Number;
-
 
 
 ////////////////////////
@@ -63,8 +76,8 @@ let getMortgageRates = async () => {
     })
 };
 
-let calculatePrinciple = (pmt, i) => {
-    let compoundedMonthlyInterest = ((i*.01)/12);
+let calculatePrinciple = (pmt, interest) => {
+    let compoundedMonthlyInterest = ((interest*.01)/12);
     let paymentLessTaxInsurance = (pmt-375);
 
     principle = ((((compoundedMonthlyInterest)*((1+compoundedMonthlyInterest)^n))/((1+(compoundedMonthlyInterest^n))-1))/(paymentLessTaxInsurance));
@@ -99,7 +112,19 @@ let saveToLocalStorage = () => {
 };
 
 let updateForm = () => {
-    const principleElLabel = document.createElement('p');
+    // label and input for rent
+    const rentPaymentLabel = document.createElement('p');
+    const rentPaymentEl = document.createElement('p');
+    // label and input for periods
+    const numberOfPeriodsLabel = document.createElement('p');
+    const numberOfPeriodsEl = document.createElement('p');
+    // label and input for rate
+    const interestRateLabel = document.createElement('p');
+    const interestRateEl = document.createElement('p');
+    // label and input for principle
+    const rentPaymentLabel = document.createElement('p');
+    const principleLabel = document.createElement('p');
+
     principleElLabel.textContent = 'Congratulations! Your Converted Max Purchase Price Is:';
     const principleEl = document.createElement('input');
     principleEl.setAttribute('type', 'text');
@@ -108,8 +133,54 @@ let updateForm = () => {
     insertFormResults.appendChild(principleElLabel);
     insertFormResults.appendChild(principleEl);
 
+/*
+Issue: 
+When document loads, load local storage.
+If rentPayment, numberOfPeriods, interestRate, and/or principle are NOT true, then 
+pull rate and wait.
+else {
+    updateForm();
+}
 
-    
+ISSUE #2: 
+onBlur. create input element for 
+Review TaskMasterPro for ideas
+
+ISSUE #3:
+If principle exists, update do not create a new one. That needs to be changed inside the major functions
+
+ISsue #4: 
+When either one is updated, adjust formula - because they are all variables, we should be able to adjust the formula accordingly everytime one is updated. 
+
+Issue #5:
+Create damn sliders bitch
+
+Issue #6:
+It would be helpful to use a library such as bootstrap for this shit so it's easier
+
+Issue $7:
+Needs to be added to Wordpress
+
+Issue #8: 
+After it is added, gather bills and send to Michael
+
+Issue #9
+I might not want to add this new code because it actually works, rather than his code does not
+
+Issue #10:
+Needs to be recreated in react and next.js
+
+Issue #11: 
+environment variables to hide partnerID#s and codebase so it's not exposed
+
+creates a login:
+Create an account to see homes that you could purchase with the rent that you pay per month.
+
+Create user with 0Auth and Hubspot as a CMS platform
+
+Grant access to extra and have an entire website of stuff ready
+*/
+
 
 //     // declare form controls:
 //     console.log('formData principle', formData.principleObj.principle);
