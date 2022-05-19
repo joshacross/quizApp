@@ -245,6 +245,16 @@ let updateForm = () => {
     privacyPolicyContainer.appendChild(disclaimerEl);
 
 }
+
+// above is creating...
+
+/* 05-18-22
+
+    I should add a button below the new form to calculate and update ORRRR show 
+
+*/
+
+
 /*
 Issue: 
 When document loads, load local storage.

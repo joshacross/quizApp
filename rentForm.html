@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=s, initial-scale=1.0">
+    <title>Document</title>
+    <link href="./assets/css/formStyles.css" rel="stylesheet">
+    <script defer src="./assets/js/rentCalcJs.js"></script>
+</head>
+<body>
+    <image src="assets/images/rentcalclogogreen.png">
+      <form id="form" class="rentCalcForm">
+        <h1 class="rentCalcHeader">
+            Fill Out The Form Below To Find Out What Houses You Could Buy With The Rent That You Pay Per Month
+        </h1>
+        <div>
+            <div class="formInputContainer">
+                <label for='name'>Full Name</label>
+                <input id="et_pb_contact_name_0" type='text' required class='et_pb_contact_name_0 firstName rentCalcInput input' value="" placeholder="Jane Smith"/>
+            </div>
+        </div>
+        <div>
+            <div class="formInputContainer">
+                <label for="rent">Monthly Rent Payment</label>
+                <input id="et_pb_contact_rent_0" placeholder="$1500" required type="number" class="et_pb_contact_rent_0 monthlyRentPayment rentCalcInput input">
+            </div>
+        </div>
+        <div class="button-container">
+            <br><br>
+            <button action="submit" class="btn button calculate">
+                Calculate
+            </button>
+        </div>
+        <div id="phoneContainer" hidden>
+            <div class="formInputContainer">
+                <label for="rent">Monthly Rent Payment</label>
+                <input id="et_pb_contact_rent_0" placeholder="$1500" type="number" class="et_pb_contact_rent_0 monthlyRentPayment rentCalcInput input">
+            </div>
+        </div>
+      </form>
+</body>
+</html>
+
