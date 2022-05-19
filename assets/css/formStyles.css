@@ -77,4 +77,43 @@ button:hover {
     font-weight: bold;
 }
 
+/* The Modal (background) */
+.modal {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    margin: 0 auto;
+    display: none; /* Hidden by default */
+    z-index: 9999; /* Sit on stop */
+    width: 100vw; /* Full width */
+    height: 100vh;
+    overflow: auto; /* Enable scroll if needed */
+    border-radius: 20px;
+    transition-duration: 0.4s;
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #209d5c;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #161e2f;
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #161e2f;
+    float: right;
+    font-size: 50px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
 

@@ -17,28 +17,50 @@
         <div>
             <div class="formInputContainer">
                 <label for='name'>Full Name</label>
-                <input id="et_pb_contact_name_0" type='text' required class='et_pb_contact_name_0 firstName rentCalcInput input' value="" placeholder="Jane Smith"/>
+                <input id="firstName" type='text' required class='et_pb_contact_name_0 firstName rentCalcInput input' value="" placeholder="first name"/>
+                <input id="lastName" type='text' required class='et_pb_contact_name_0 lastName rentCalcInput input' value="" placeholder="last name"/>
             </div>
         </div>
         <div>
             <div class="formInputContainer">
                 <label for="rent">Monthly Rent Payment</label>
-                <input id="et_pb_contact_rent_0" placeholder="$1500" required type="number" class="et_pb_contact_rent_0 monthlyRentPayment rentCalcInput input">
+                <input id="rent" placeholder="$1500" required type="number" class="et_pb_contact_rent_0 monthlyRentPayment rentCalcInput input">
             </div>
         </div>
         <div class="button-container">
             <br><br>
-            <button action="submit" class="btn button calculate">
+            <button id="myBtn" class="btn button calculate">
                 Calculate
             </button>
         </div>
-        <div id="phoneContainer" hidden>
-            <div class="formInputContainer">
-                <label for="rent">Monthly Rent Payment</label>
-                <input id="et_pb_contact_rent_0" placeholder="$1500" type="number" class="et_pb_contact_rent_0 monthlyRentPayment rentCalcInput input">
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal" hidden>
+
+        <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div id="phoneContainer">
+                    <div class="phoneContainer">
+                        <h1>Please Enter Your Phone Number To Receive A One-Time Text-Verification Code</h1>
+                        <div>
+                            <form>
+                        <label style="color: 161e2f !important;" for="rent">Phone Number</label>
+                        <input required id="phone" placeholder="Enter Phone" type="number" class="et_pb_contact_phone_0 phone rentCalcInput input">
+                        <button id="verify">Verify</button>
+                            </div>
+                            <div>
+                            <input id="phoneVerificationNumber" hidden required for="verification" type="text" placeholder="six-digit verification code">
+                            <button hidden id="phoneVerificationBtn" action="submit">Submit</button>
+                        </div>
+                        </form>
+                    </div>
+
+                </div>
             </div>
         </div>
       </form>
+
 </body>
 </html>
 
