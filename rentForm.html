@@ -10,32 +10,33 @@
 </head>
 <body>
     <image src="assets/images/rentcalclogogreen.png">
-      <form id="form" class="rentCalcForm">
-        <h1 class="rentCalcHeader">
-            Fill Out The Form Below To Find Out What Houses You Could Buy With The Rent That You Pay Per Month
-        </h1>
-        <div>
-            <div class="formInputContainer">
+      <form id="form">
+        <div class="rentCalcForm">
+            <div id="formHeaderContainer"></div>
+            <h1 class="rentCalcHeader">
+                Fill Out The Form Below To Find Out What Houses You Could Buy With The Rent That You Pay Per Month
+            </h1>
+            <div class="formInputContainer firstLastNameContainer">
                 <label for='name'>Full Name</label>
                 <input id="firstName" type='text' required class='et_pb_contact_name_0 firstName rentCalcInput input' value="" placeholder="first name"/>
                 <input id="lastName" type='text' required class='et_pb_contact_name_0 lastName rentCalcInput input' value="" placeholder="last name"/>
             </div>
-        </div>
-        <div>
-            <div class="formInputContainer">
+            <div class="formInputContainer monthlyRentContainer">
                 <label for="rent">Monthly Rent Payment</label>
                 <input id="rent" placeholder="$1500" required type="number" class="et_pb_contact_rent_0 monthlyRentPayment rentCalcInput input">
             </div>
-        </div>
-        <div class="button-container">
-            <br><br>
-            <button id="myBtn" class="btn button calculate">
-                Calculate
-            </button>
+            <div class="button-container calculateBtnContainer">
+                <br><br>
+                <button id="myBtn" class="btn button calculate modalTrigger">
+                    Calculate
+                </button>
+            </div>
         </div>
 
-        <!-- The Modal -->
-        <div id="myModal" class="modal" hidden>
+
+                        </form>
+                                <!-- The Modal -->
+        <div id="myModal" class="modalForm modal" hidden>
 
         <!-- Modal content -->
             <div class="modal-content">
@@ -45,19 +46,22 @@
                         <h1>Please Enter Your Phone Number To Receive A One-Time Text-Verification Code</h1>
                         <div>
                             <form>
-                        <label style="color: 161e2f !important;" for="rent">Phone Number</label>
-                        <input required id="phone" placeholder="Enter Phone" type="number" class="et_pb_contact_phone_0 phone rentCalcInput input">
-                        <button id="verify">Verify</button>
-                            </div>
-                            <div>
-                            <input id="phoneVerificationNumber" hidden required for="verification" type="text" placeholder="six-digit verification code">
-                            <button hidden id="phoneVerificationBtn" action="submit">Submit</button>
-                        </div>
-                        </form>
-                    </div>
+                                <div style="display:flex;">
 
+                                    <input id="phone" placeholder="Enter Phone" type="number" class="et_pb_contact_phone_0 phone rentCalcInput input">
+                                    <p id="verify">Verify</p>
+                                </div>
+                                <div id="verificationContainer" class="">
+
+                                    <input id="phoneVerificationNumber" value="" for="verification" type="text" placeholder="six-digit verification">
+                                    <button id="phoneVerificationBtn" action="submit">Submit</button>
+                                </div>
+                            </form>
+                    </div>
                 </div>
             </div>
+
+        </div>
         </div>
       </form>
 
