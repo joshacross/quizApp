@@ -141,7 +141,7 @@ let sendData = () => {
         }).catch((err) => {
             console.log(err);
         });
-        parent.location.href = "https://rentcalculator.com/properties/?widget_id=2&kind=0&sf_unit_price=260&sf_min_price=0&sf_max_price="+principle;
+        parent.location.href = "https://rentcalculator.com/properties/?widget_id=2&kind=0&sf_unit_price=260&sf_min_price=0&sf_max_price="+formData[0].principle;
 }
 
 let start = (e) => {
