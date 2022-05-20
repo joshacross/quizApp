@@ -12,55 +12,76 @@ const multiply = (num1, num2) => {
 //calculate button
 let calculateBtn = document.getElementById('calculateBtn');
 	
-let loadStorage = () => {
-    principle = localStorage.getItem('principle');
-    firstName =  localStorage.getItem('first_name');
-    lastName = localStorage.getItem('last_name');
-    phone = localStorage.getItem('phone');
-    rent = localStorage.getItem('rent');
+// let loadStorage = () => {
+//     principle = localStorage.getItem('principle');
+//     firstName =  localStorage.getItem('first_name');
+//     lastName = localStorage.getItem('last_name');
+//     phone = localStorage.getItem('phone');
+//     rent = localStorage.getItem('rent');
 
-    if ( principle !== null || firstName !==null || lastName !== null || phone !== null || rent !== null ) {
-        let formData = {
-            'first_name': firstName, 
-            'last_name': lastName, 
-            'phone': phone, 
-            'rentPayment': rent, 
-            'principle': principle
-        }
-    }
+//     if ( principle !== null || firstName !==null || lastName !== null || phone !== null || rent !== null && rent !== NaN ) {
+//         let formData = {
+//             'first_name': firstName, 
+//             'last_name': lastName, 
+//             'phone': phone, 
+//             'rentPayment': rent, 
+//             'principle': principle
+//         }
 
-    const firstNameEl = document.getElementById('firstName');
-    const lastNameEl = document.getElementById('lastName');
-    const phoneEl = document.getElementById('phone');
-    const rentEl = document.getElementById('rent');
+//         const firstNameEl = document.getElementById('firstName');
+//         const lastNameEl = document.getElementById('lastName');
+//         const phoneEl = document.getElementById('phone');
+//         const rentEl = document.getElementById('rent');
+    
+//         firstNameEl.value = firstName;
+//         lastNameEl.value = lastName
+//         phoneEl.value = phone
+//         rentEl.value = rent
+    
+//         return (formData);
+//     } else {
+//         console.log('no storage loaded');
+//     }
 
-    firstName.value = formData.firstName
-    lastName.value = formData.lastName;
-    phone.value = formData.phone;
-    rent.value = formData.rent;
-}
+
+
+// }
 
 // After calculateBtn is clicked: 
 let returnRent = () => { 
+    console.log('formDataArr', formData);
     const firstName = document.getElementById('firstName').value.trim();
     const lastName = document.getElementById('lastName').value.trim();
     const phone = document.getElementById('phone').value.trim();
     const rent = document.getElementById('rent').value.trim();
     const pvResult = multiply(rent, 150.47766315152);
 
-    let formData = {'first_name': firstName, 'last_name': lastName, 'phone': phone, 'rentPayment': rent, 'principle': pvResult};
+    console.log('firstName', firstName)
+    console.log('lastName', lastName);
+    console.log('phone', phone);
+    console.log('rent', rent);
+    console.log('pvResult', pvResult);
 
-        return formData;
-    }
 
+
+    let formDataObj = {'first_name': firstName,'last_name': lastName, 'phone': phone,'rentPayment': rent, 'principle': pvResult}
+
+    formData.push(formDataObj);
+
+        return (formData);
+
+}
 //Save to Local Storage
 
 let setStorage = () => {
-    localStorage.setItem('principle', pvResult);
-    localStorage.setItem('first_name', firstName);
-    localStorage.setItem('last_name', lastName);
-    localStorage.setItem('phone', phone);
-    localStorage.setItem('rent', rent);
+
+    console.log('formData in setStorage', formData[0].first_name);
+    localStorage.setItem('principle', formData[0].principle);
+    localStorage.setItem('first_name', formData[0].first_name);
+    localStorage.setItem('last_name', formData[0].last_name);
+    localStorage.setItem('phone', formData[0].phone);
+    localStorage.setItem('rent', formData[0].rentPayment);
+    return;
 }
 
 // after verifyPhoneBtn is clicked
@@ -79,6 +100,7 @@ let sendTextConfirmation = () => {
     //              .create({to: + phoneID , channel: 'sms'})
     //              .then(verification => console.log(verification.sid));
     console.log('twilio text-confirmation');
+    return;
     
 }
 //send phone to twilio webhook
@@ -87,39 +109,39 @@ let sendTextConfirmation = () => {
 
 // after textConfirmation is inputed and user clicks Verify.
 let sendData = () => {
-    
-    /////////TWILIO VERIFICATION CALLBACK ///////////
 
-        
-        console.log('sendData() initiated');
-        async function sendForm (url='', data = {}) {
+    // /////////TWILIO VERIFICATION CALLBACK ///////////
 
-            const response = await fetch(url, {
-                method: 'POST',
-                mode: 'cors',
-                cache: 'no-cache',
-                credentials: 'omit',
-                // headers: {
-                //     'Accept': 'application/json',
-                //     'Content-Type': 'application/json'
-                // },
-                // redirect: 'follow',
-                refererPolicy: 'strict-origin-when-cross-origin',
-                body: JSON.stringify(data)
-            });
-                return response.json();
-            }
+    console.log('formDataPrinciple', formData[0].principle);
+    console.log('sendData() initiated');
+    async function sendForm (url='', data = {}) {
 
-            setStorage();
+        const response = await fetch(url, {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'omit',
+            // headers: {
+            //     'Accept': 'application/json',
+            //     'Content-Type': 'application/json'
+            // },
+            // redirect: 'follow',
+            refererPolicy: 'strict-origin-when-cross-origin',
+            body: JSON.stringify(data)
+        });
+            return response.json();
+        }
 
-        
-        sendForm('https://hooks.zapier.com/hooks/catch/9671423/b8om3hn/', formData)
-            .then(data => {
-                console.log(data);
-            }).catch((err) => {
-                console.log(err);
-            });
-            parent.location.href = "https://rentcalculator.com/properties/?widget_id=2&kind=0&sf_unit_price=260&sf_min_price=0&sf_max_price="+formData.pvResult;
+        setStorage();
+
+
+    sendForm('https://hooks.zapier.com/hooks/catch/9671423/b8om3hn/', formData)
+        .then(data => {
+            console.log(data);
+        }).catch((err) => {
+            console.log(err);
+        });
+        parent.location.href = "https://rentcalculator.com/properties/?widget_id=2&kind=0&sf_unit_price=260&sf_min_price=0&sf_max_price="+principle;
 }
 
 let start = (e) => {
@@ -129,6 +151,8 @@ setStorage();
 sendTextConfirmation();
 sendData();
 };
+
+// loadStorage();
 
 //Event Listeners:
 
