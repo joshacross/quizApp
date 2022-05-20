@@ -1,53 +1,94 @@
 let formData = [];
+let principle = Number;
+let firstName = '';
+let lastName = '';
+let phone = Number;
+let rent = Number;
+let pvResult = Number;
 
 const multiply = (num1, num2) => {
     return Math.floor(num1*num2);
 }
-
-
-
-// Get the modal
-const modal = document.getElementById("myModal");
-
-// Get the button that opens the modal but also will create obj and save to localStorage
-const btn = document.getElementById("myBtn");
-
-// Get the <span> element that closes the modal
-const span = document.getElementsByClassName("close")[0];
-
-
-const verifyBtn = document.getElementById('verify');
-
-const phoneVerificationBtn = document.getElementById('phoneVerificationBtn');
-
-const verificationContainer = document.getElementById('verificationContainer');
-
-
+//calculate button
+let calculateBtn = document.getElementById('calculateBtn');
 	
+let loadStorage = () => {
+    principle = localStorage.getItem('principle');
+    firstName =  localStorage.getItem('first_name');
+    lastName = localStorage.getItem('last_name');
+    phone = localStorage.getItem('phone');
+    rent = localStorage.getItem('rent');
+
+    if ( principle !== null || firstName !==null || lastName !== null || phone !== null || rent !== null ) {
+        let formData = {
+            'first_name': firstName, 
+            'last_name': lastName, 
+            'phone': phone, 
+            'rentPayment': rent, 
+            'principle': principle
+        }
+    }
+
+    const firstNameEl = document.getElementById('firstName');
+    const lastNameEl = document.getElementById('lastName');
+    const phoneEl = document.getElementById('phone');
+    const rentEl = document.getElementById('rent');
+
+    firstName.value = formData.firstName
+    lastName.value = formData.lastName;
+    phone.value = formData.phone;
+    rent.value = formData.rent;
+}
+
+// After calculateBtn is clicked: 
 let returnRent = () => { 
     const firstName = document.getElementById('firstName').value.trim();
     const lastName = document.getElementById('lastName').value.trim();
+    const phone = document.getElementById('phone').value.trim();
     const rent = document.getElementById('rent').value.trim();
     const pvResult = multiply(rent, 150.47766315152);
 
-    let formData = {'first_name': firstName, 'last_name': lastName, 'rentPayment': rent, 'principle': pvResult};
+    let formData = {'first_name': firstName, 'last_name': lastName, 'phone': phone, 'rentPayment': rent, 'principle': pvResult};
 
-
-    let setStorage = () => {
-        localStorage.setItem('principle', pvResult);
-        localStorage.setItem('first_name', firstName);
-        localStorage.setItem('last_name', lastName);
-        localStorage.setItem('rent', rent);
-    }
-        setStorage();
         return formData;
     }
- 
 
-let sendData = (e) => {
+//Save to Local Storage
+
+let setStorage = () => {
+    localStorage.setItem('principle', pvResult);
+    localStorage.setItem('first_name', firstName);
+    localStorage.setItem('last_name', lastName);
+    localStorage.setItem('phone', phone);
+    localStorage.setItem('rent', rent);
+}
+
+// after verifyPhoneBtn is clicked
+let sendTextConfirmation = () => {
+    // const phone = document.getElementById('phone').value.trim();
+    // let phoneID = '+' + '1' + phone;
+    // console.log(phoneID);
+
+    // //////// TWILIO INFORMATION WEBHOOK AND ENVIRONMENT VARIABLES
+    // const accountSid = process.env.TWILIO_ACCOUNT_SID;
+    // const authToken = process.env.TWILIO_AUTH_TOKEN;
+    // const client = require('twilio')(accountSid, authToken);
+    
+    // client.verify.services('VA74b70157d8fcec820e82ec4f9fb81125')
+    //              .verifications
+    //              .create({to: + phoneID , channel: 'sms'})
+    //              .then(verification => console.log(verification.sid));
+    console.log('twilio text-confirmation');
+    
+}
+//send phone to twilio webhook
+//await for response
+// send callback response confirmation number
+
+// after textConfirmation is inputed and user clicks Verify.
+let sendData = () => {
     
     /////////TWILIO VERIFICATION CALLBACK ///////////
-        e.preventDefault();
 
         
         console.log('sendData() initiated');
@@ -79,48 +120,17 @@ let sendData = (e) => {
                 console.log(err);
             });
             window.location.href = "https://rentcalculator.com/properties/?widget_id=2&kind=0&sf_unit_price=260&sf_min_price=0&sf_max_price="+formData.userPV;
-
 }
 
-
-btn.onclick = () => {
-    modal.style.display = "block";
-
+let start = (e) => {
+e.preventDefault();
+returnRent();
+setStorage();
+sendTextConfirmation();
+sendData();
 };
 
+//Event Listeners:
 
-// When the user clicks on the button, open the modal
-btn.onclick = (e) => {
-    e.preventDefault();
-    returnRent();
-    modal.style.display = "block";
-  }
-  
-  // When the user clicks on <span> (x), close the modal
-  span.onclick = () => {
-    modal.style.display = "none";
-  }
-  
-  // When the user clicks anywhere outside of the modal, close it
-  window.onclick = (event) => {
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
-  };
-
-  verifyBtn.addEventListener('click', ()=> {
-    console.log('verifyBtn clicked');
-    
-    const phone = document.getElementById('phone').value.trim();
-    
-        formData = { ...formData, 'phone': phone };
-    
-        let setStorage = () => {
-            localStorage.setItem('phone', phone);
-        }
-    
-        setStorage();
-    phoneVerificationBtn.addEventListener('submit', sendData);
-});
-
-    
+//Calculate and send phone one-text verification
+calculateBtn.addEventListener('click', start);

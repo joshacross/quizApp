@@ -3,15 +3,8 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-#start {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    width: 100vw;
-    height: 100vh;
-    background-color: #fff;
-    text-align: center;
+form {
+    background-color: white;
 }
 
 img {
@@ -145,3 +138,8 @@ input {
     display: flex;
     justify-content: center;
 }
+
+.phoneContainerHolder {
+    display: flex;
+}
+

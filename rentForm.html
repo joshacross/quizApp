@@ -1,70 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=s, initial-scale=1.0">
     <title>Document</title>
     <link href="./assets/css/formStyles.css" rel="stylesheet">
-    <script defer src="./assets/js/rentCalcJs.js"></script>
+    <script defer src="./assets/js/rentCalcJs.js"></script>    
 </head>
+
 <body>
     <image src="assets/images/rentcalclogogreen.png">
-      <form id="form">
-        <div class="rentCalcForm">
-            <div id="formHeaderContainer"></div>
-            <h1 class="rentCalcHeader">
-                Fill Out The Form Below To Find Out What Houses You Could Buy With The Rent That You Pay Per Month
-            </h1>
-            <div class="formInputContainer firstLastNameContainer">
-                <label for='name'>Full Name</label>
-                <input id="firstName" type='text' required class='et_pb_contact_name_0 firstName rentCalcInput input' value="" placeholder="first name"/>
-                <input id="lastName" type='text' required class='et_pb_contact_name_0 lastName rentCalcInput input' value="" placeholder="last name"/>
-            </div>
-            <div class="formInputContainer monthlyRentContainer">
-                <label for="rent">Monthly Rent Payment</label>
-                <input id="rent" placeholder="$1500" required type="number" class="et_pb_contact_rent_0 monthlyRentPayment rentCalcInput input">
-            </div>
-            <div class="button-container calculateBtnContainer">
-                <br><br>
-                <button id="myBtn" class="btn button calculate modalTrigger">
-                    Calculate
-                </button>
-            </div>
-        </div>
-
-
-                        </form>
-                                <!-- The Modal -->
-        <div id="myModal" class="modalForm modal" hidden>
-
-        <!-- Modal content -->
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <div id="phoneContainer">
-                    <div class="phoneContainer">
-                        <h1>Please Enter Your Phone Number To Receive A One-Time Text-Verification Code</h1>
-                        <div>
-                            <form>
-                                <div style="display:flex;">
-
-                                    <input id="phone" placeholder="Enter Phone" type="number" class="et_pb_contact_phone_0 phone rentCalcInput input">
-                                    <p id="verify">Verify</p>
-                                </div>
-                                <div id="verificationContainer" class="">
-
-                                    <input id="phoneVerificationNumber" value="" for="verification" type="text" placeholder="six-digit verification">
-                                    <button id="phoneVerificationBtn" action="submit">Submit</button>
-                                </div>
-                            </form>
+        <form id="form">
+            <div class="rentCalcForm">
+                <h1 class="rentHeader">
+                    Fill Out The Form Below To Find Out What Houses You Could Buy With The Rent That You Pay Per Month
+                </h1>
+                <div class="container">
+<!-- ROW 1 -->
+                    <div class="container-group">
+<!--////FIRST NAME//////-->
+                        <div class="containers first-name-container">
+                            <label for='name'>First Name</label>
+                            <input id="firstName" type='text' required
+                                class='et_pb_contact_name_0 firstName rentCalcInput input' value=""
+                                placeholder="first name" />
+                        </div>
+<!--////LAST NAME//////-->
+                        <div class="containers last-name-container">
+                            <label for='name'>Last Name</label>
+                            <input id="lastName" type='text' required
+                                class='et_pb_contact_name_0 lastName rentCalcInput input' value=""
+                                placeholder="last name" />
+                        </div>
+                    </div>
+<!--ROW 2-->
+                    <div class="container-group">
+<!--////PHONE NUMBER//////-->
+                        <div class="containers phone-container">
+                            <label for="phone">Phone Number*</label>
+                            <input name="PHONE" id="phone" placeholder="+1 (615) 555-5555" required type="tel"
+                                class="phone rentCalcInput input  et_pb_contact_phone_0">
+                        </div>
+<!--////MONTHLY RENT PAYMENT//////-->
+                        <div class="containers rent-container">
+                                <label for="monthlyRent">Monthly Rent</label>
+                                <input name="monthlyRent" id="rent" placeholder="$1,500" type="number"
+                                    class="et_pb_contact_rent_0 rentCalcInput input">
+                        </div>  
+                    </div>
+                    <div class="containers button-container">
+                    <button id="calculateBtn" class="button">Calculate</button>
                     </div>
                 </div>
             </div>
-
-        </div>
-        </div>
-      </form>
+            <div>
+                <p>*Please Enter Your Phone Number To Receive A One-Time Text-Verification Code. By providing
+                    your phone number you agree </p>
+            </div>
+        </form>
 
 </body>
-</html>
 
+</html>

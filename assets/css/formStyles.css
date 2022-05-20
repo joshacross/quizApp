@@ -12,13 +12,14 @@ body {
     align-content: center;
     max-width: 1200px;
     background-color: #161e2f;
-    color: #fff;
+    color: #161e2f;
 }
+
+
 
 h1 {
     text-align: center; 
     font-style: italic; 
-    font-weight: lighter;
     font-size: 25px;
     margin: 20px auto  40px auto;
 }
@@ -28,48 +29,59 @@ img {
     width: 75%;
 }
 
+/* Main Form Global Attributes */
+
 form {
+    padding: 50px;
     max-width: 80%;
     display: flex;
     justify-content: space-around; 
     flex-wrap: wrap;
-}
-
-.rentCalcForm {
-    display: flex;
-    justify-content: space-around; 
-    flex-wrap: wrap;
-}
-
-
-
-.hide {
-    display: none;
-}
-
-input {
-    padding: 20px 40px;
-    font-size: large;
-    border: solid 3px #161e2f;
+    background-color: #209d5c;
     border-radius: 10px;
-    margin: 20px;
+    color: #f8f8f8;
+    border: inset 5px #f8f8f8;
+    box-shadow:rgba(41, 43, 44, 0.3);
 }
+
+/* Input Containers and Button formatting*/
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+
+.container-group {
+    display: flex;
+}
+
+.containers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*inputs*/
 
 label {
     font-size:large;
     font-weight: bold;
 }
 
-.formInputContainer {
+input {
+    padding: 10px 20px;
+    font-size: large;
     text-align: center;
-    display: flex;
-    flex-direction: column;
+    border: solid 3px #161e2f;
+    border-radius: 10px;
+    margin: 20px;
 }
 
-button {
-    padding: 10px 30px;
-    border-radius: 5px;
+.button {
     padding: 20px;
+    border-radius: 5px;
     box-shadow:
                0 0  0 2px rgb(255,255,255),
                0.3em 0.3em 1em rgba(41, 43, 44, 0.3);
@@ -80,78 +92,14 @@ button {
     transition-duration: 0.4s;
 }
 
-button:hover {
+.button:hover {
     box-shadow: none;
-    border: solid 3px #209d5c;
     background-color:#209d5c;
     color: #161e2f;
     font-size: 20px;
     font-weight: bold;
 }
 
-#verify {
-    padding: 10px 10px;
-    border-radius: 5px;
-    padding: 20px;
-    box-shadow:
-               0 0  0 2px rgb(255,255,255),
-               0.3em 0.3em 1em rgba(41, 43, 44, 0.3);
-    border: solid 3px #fff;
-    background-color:#161e2f;
-    color: #fff;
-    font-size: 20px;
-    transition-duration: 0.4s;
-    width: 50%;
-    float: left;
+.hide {
+    display: none;
 }
-
-#verify:hover {
-    box-shadow: none;
-    border: solid 3px #fff;
-    background-color:#fff;
-    color: #161e2f;
-    font-size: 20px;
-    font-weight: bold;
-}
-
-/* The Modal (background) */
-.modal {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-    margin: 0 auto;
-    display: none; /* Hidden by default */
-    z-index: 9999; /* Sit on stop */
-    width: 100vw; /* Full width */
-    height: 100vh;
-    overflow: auto; /* Enable scroll if needed */
-    border-radius: 20px;
-    transition-duration: 0.4s;
-    max-width: 90%;
-  }
-  
-  /* Modal Content/Box */
-  .modal-content {
-    background-color: #209d5c;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #161e2f;
-    width: 80%; /* Could be more or less, depending on screen size */
-  }
-  
-  /* The Close Button */
-  .close {
-    color: #161e2f;
-    float: right;
-    font-size: 50px;
-    font-weight: bold;
-  }
-  
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
-
