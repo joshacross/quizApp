@@ -25,18 +25,17 @@ let arrayLoop = () => {
 }
 
 showTableOnPage = () => {
-	let arrayContainer = document.getElementById("container").textContent 
+
+    const containerEl = document.getElementById('container');
+    let divContainerEl = document.createElement('div');
+
+    let arrayData = document.createElement('h6');
     
-    arrayContainer = arr.join(", ");
+    arrayData = arr.join(", ");
     let title = document.createElement('h1');
     title.textContext = total;
-<<<<<<< HEAD
-    arrayContainer.appendChild('title');
-=======
     divContainer = document.createElement('div');
-    divContainer.appendChild('title)');
-    arrayContainer.appendChild('divContainer');
->>>>>>> develop
+    divContainer.appendChild(title);
   }
 //   //append the compiled table to the DOM
 //   document.body.appendChild(table);
