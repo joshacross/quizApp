@@ -30,7 +30,13 @@ showTableOnPage = () => {
     arrayContainer = arr.join(", ");
     let title = document.createElement('h1');
     title.textContext = total;
+<<<<<<< HEAD
     arrayContainer.appendChild('title');
+=======
+    divContainer = document.createElement('div');
+    divContainer.appendChild('title)');
+    arrayContainer.appendChild('divContainer');
+>>>>>>> develop
   }
 //   //append the compiled table to the DOM
 //   document.body.appendChild(table);
