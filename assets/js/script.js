@@ -64,11 +64,11 @@ let loadStorage = () => {
 formEl.addEventListener('submit', (e) => {
     e.preventDefault();
     const emailEl = document.getElementById('email').value;
-    emailSurvey = document.getElementById('email-survey');
-    emailSurveyChild = emailSurvey.firstChild;
-    console.log('emailSurvey', emailSurvey);
-    console.log('emailSurveyChild', emailSurveyChild);
-    emailSurveyChild.setAttribute('data-trigger-element-class', 'surveySeen');
+    // emailSurvey = document.getElementById('email-survey');
+    // emailSurveyChild = emailSurvey.firstChild;
+    // console.log('emailSurvey', emailSurvey);
+    // console.log('emailSurveyChild', emailSurveyChild);
+    // emailSurveyChild.setAttribute('data-trigger-element-class', 'surveySeen');
 
 
 // (A) START when user clicks the complete button
